@@ -12,7 +12,9 @@ public class GestionnaireUtilisateurs {
     // Ici injection de code : on n'initialise pas. L'entity manager sera créé  
     // à partir du contenu de persistence.xml  
     @PersistenceContext  
-    private EntityManager em;  
+    private EntityManager em; 
+    private int actualPaging = 0;
+    private int pagingJump = 3; 
   
     public void creerUtilisateursDeTest() {  
         creeUtilisateur("John", "Lennon", "jlennon");  
@@ -29,9 +31,20 @@ public class GestionnaireUtilisateurs {
   
     public Collection<Utilisateur> getAllUsers() {  
         // Exécution d'une requête équivalente à un select *  
-        Query q = em.createQuery("select u from Utilisateur u");  
+        Query q = em.createQuery("SELECT u from Utilisateur u"); 
+        q.setFirstResult(actualPaging);
+        q.setMaxResults(pagingJump);
+        return q.getResultList();
+    }
+    
+    public Collection<Utilisateur> getUsersPaginated() {  
+        // Exécution d'une requête équivalente à un select *  
+        Query q = em.createQuery("SELECT u from Utilisateur u"); 
+        this.actualPaging += pagingJump;
+        q.setFirstResult(actualPaging);
+        q.setMaxResults(pagingJump);
         return q.getResultList();  
-    } 
+    }
     
     public Collection<Utilisateur> getOneUserByLogin(String login) {
         // Exécution d'une requête équivalente à un select where login  
@@ -53,6 +66,7 @@ public class GestionnaireUtilisateurs {
       "UPDATE Country SET population = population * 11 / 10 " +
       "WHERE c.population < :p");*/
     }
+    
     // Add business logic below. (Right-click in editor and choose  
     // "Insert Code > Add Business Method")  
 }  

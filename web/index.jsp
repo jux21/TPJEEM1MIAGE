@@ -63,7 +63,7 @@
                 <input type="submit" value="Mettre à jour" name="submit"/>  
             </form>  
             
-            <li>Supprimer un utilisateur TEEEESSSST :</li>  
+            <li>Supprimer un utilisateur :</li>  
             <form action="ServletUsers" method="get">  
                 Login : <input type="text" name="login"/><br>    
                 <input type="hidden" name="action" value="deleteUtilisateur"/>  
@@ -102,7 +102,8 @@
                 <!-- Affichage du solde total dans la dernière ligne du tableau -->  
                 <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
             </table>  
-  
+            <a href="ServletUsers?action=nextResult">Next</a>
+            <a href="ServletUsers?action=previousResult">Previous</a>
         </c:if>  
     </body>  
 </html>
