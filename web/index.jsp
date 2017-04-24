@@ -11,7 +11,7 @@
   
 <!-- Ne pas oublier cette ligne sinon tous les tags de la JSTL seront ignorés ! -->  
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
-  
+
 <html>  
     <head>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -48,25 +48,9 @@
         
         <title>Gestionnaire d'utilisateurs</title>  
     </head>  
-    <body> 
-        <header>
-            <!--HEADER-->
-            <nav class="nav-extended #7cb342 light-green darken-1" role="navigation">
-                <div class="nav-wrapper">
-                    <div class="row logo">
-                        <a href="/" class="brand-logo flow-text">
-                            <i class="material-icons">stay_primary_portrait</i>
-                            <span class="hide-on-small-only flow-text">TP JEE</span></a>
-                    </div>
-                    <!--<ul class="tabs tabs-transparent">
-                        <li class="tab"><a id="lien_menu_accueil" target="_self" href="/">Accueil</a></li>
-                        <li class="tab"><a id="lien_menu_map" target="_self" href="/map">Consulter les données</a></li>
-                        <li class="tab"><a id="lien_menu_list" target="_self" href="/list">Liste des monuments</a></li>
-                    </ul>-->
-                </div>
-            </nav>
-        </header>
+     <body> 
     
+<jsp:include page="header.jsp"/> 
         <main>
 
          <ul id="slide-out" class="side-nav fixed">
@@ -180,6 +164,8 @@
                 
 
         </main>
+    
+        <jsp:include page="footer.jsp"/>  
         <footer>
         </footer>      
          <!--Import jQuery before materialize.js -->
