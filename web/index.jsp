@@ -63,7 +63,7 @@
                 <input type="submit" value="Mettre à jour" name="submit"/>  
             </form>  
             
-            <li>Supprimer un utilisateur :</li>  
+            <li>Supprimer un utilisateur TEEEESSSST :</li>  
             <form action="ServletUsers" method="get">  
                 Login : <input type="text" name="login"/><br>    
                 <input type="hidden" name="action" value="deleteUtilisateur"/>  
