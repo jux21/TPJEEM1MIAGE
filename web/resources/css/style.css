@@ -48,7 +48,7 @@ nav.nav-extended .nav-wrapper {
     background: #2c2e80;
 }
 main, footer {
-      padding-left: 300px;
+      padding-left: 320px;
     }
 
     @media only screen and (max-width : 992px) {
