@@ -50,14 +50,14 @@ public class ServletUsers extends HttpServlet {
                 
             } else if (action.equals("creerUtilisateursDeTest")) {  
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();  
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated();  
                 request.setAttribute("listeDesUsers", liste);  
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Création des utilisateurs de test";  
                 
             } else if (action.equals("creerUnUtilisateur")) {
                 gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated();  
                 request.setAttribute("listeDesUsers", liste);  
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Création de l'utilisateur "+request.getParameter("login");
@@ -70,17 +70,23 @@ public class ServletUsers extends HttpServlet {
                 
             } else if (action.equals("updateUtilisateur")) {   
                 gestionnaireUtilisateurs.updateUtilisateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("login")); 
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated();
                 request.setAttribute("listeDesUsers", liste);  
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Modification de l'utilisateur "+request.getParameter("login");
                 
             } else if (action.equals("deleteUtilisateur")) {     
                 gestionnaireUtilisateurs.deleteUser(request.getParameter("login")); 
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated();
                 request.setAttribute("listeDesUsers", liste); 
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Suppression de l'utilisateur "+request.getParameter("login");
+                
+            } else if (action.equals("nextResult")) {  
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated();  
+                request.setAttribute("listeDesUsers", liste);  
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                message = "Liste des utilisateurs"; 
                 
             } else {  
                 forwardTo = "index.jsp?action=todo";  

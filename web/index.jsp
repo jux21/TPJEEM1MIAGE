@@ -100,6 +100,7 @@
 
 
             
+<<<<<<< HEAD
             <ul>  
                 <li><a href="ServletUsers?action=listerLesUtilisateurs">Afficher/raffraichir la liste de tous les utilisateurs</a></li>  
                 <p>  
@@ -151,11 +152,41 @@
 
                 <table border="10">  
                     <!-- La ligne de titre du tableau des comptes -->  
+=======
+            <li>Supprimer un utilisateur :</li>  
+            <form action="ServletUsers" method="get">  
+                Login : <input type="text" name="login"/><br>    
+                <input type="hidden" name="action" value="deleteUtilisateur"/>  
+                <input type="submit" value="Supprimer" name="submit"/>  
+            </form> 
+        </ol>  
+  
+        <!-- Fin du menu -->  
+  
+        <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
+        <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >  
+            <h2>Liste des utilisateurs</h2>  
+  
+            <table border="10">  
+                <!-- La ligne de titre du tableau des comptes -->  
+                <tr>  
+                    <td><b>Login</b></td>  
+                    <td><b>Nom</b></td>  
+                    <td><b>Prénom</b></td>  
+                </tr>  
+  
+                <!-- Ici on affiche les lignes, une par utilisateur -->  
+                <!-- cette variable montre comment on peut utiliser JSTL et EL pour calculer -->  
+                <c:set var="total" value="0"/>  
+  
+                <c:forEach var="u" items="${requestScope['listeDesUsers']}">  
+>>>>>>> 2d42ac9f2500809fe295a8a1892ee5ee8c01c553
                     <tr>  
                         <td><b>Login</b></td>  
                         <td><b>Nom</b></td>  
                         <td><b>Prénom</b></td>  
                     </tr>  
+<<<<<<< HEAD
 
                     <!-- Ici on affiche les lignes, une par utilisateur -->  
                     <!-- cette variable montre comment on peut utiliser JSTL et EL pour calculer -->  
@@ -179,6 +210,15 @@
         <footer>
         </footer>
   
+=======
+                </c:forEach>  
+  
+                <!-- Affichage du solde total dans la dernière ligne du tableau -->  
+                <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
+            </table>  
+            <a href="ServletUsers?action=nextResult">Next</a>
+            <a href="ServletUsers?action=previousResult">Previous</a>
+>>>>>>> 2d42ac9f2500809fe295a8a1892ee5ee8c01c553
         </c:if>  
          <!--Import jQuery before materialize.js -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
