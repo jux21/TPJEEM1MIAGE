@@ -51,76 +51,21 @@
      <body> 
     
 <jsp:include page="header.jsp"/> 
-        <main>
 
-         <ul id="slide-out" class="side-nav fixed">
-            <li><div class="userView">
-            <div class="background"></div>
-            <a class="circle" href="#!user"></a>
-            <a href="#!name"><span class="white-text name">John Doe</span></a>
-            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
-            </div></li>
-            <h5>Menu de gestion des utilisateurs</h5>
-            <div class="label">
-                <label>Liste des fonctionnalités à implémenter dans la Servlet (note : après chaque action cette page sera rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</label>
-            </div>
-            <li><a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</pan></a></li>
-            <li><a href="#!">Second Link</a></li>
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-      </ul>
+
+<main>
+
+         
+        <jsp:include page="sidenave.jsp"/> 
 
      <h1>Gestionnaire d'utilisateurs</h1>  
   
-  
+  <a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</span></a>
         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
         <c:if test="${!empty param['message']}">  
             <h2>Reçu message : ${param.message}</h2>  
         </c:if>  
-  
-        <ul>  
-            <li></li>  
-            <p>  
-        </ul>  
-             
-        <ol>  
-            <li><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>  
-  
-            <li>Créer un utilisateur</li>  
-            <form action="ServletUsers" method="get">  
-                Nom : <input type="text" name="nom"/><br>  
-                Prénom : <input type="text" name="prenom"/><br>  
-                Login : <input type="text" name="login"/><br>  
-                <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
-                <input type="hidden" name="action" value="creerUnUtilisateur"/>  
-                <input type="submit" value="Créer l'utilisateur" name="submit"/>  
-            </form>  
-  
-            <li>Afficher les détails d'un utilisateur</li>  
-            <form action="ServletUsers" method="get">  
-                login : <input type="text" name="login"/><br>  
-                <input type="hidden" name="action" value="chercherParLogin"/>  
-                <input type="submit" value="Chercher" name="submit"/>  
-            </form>  
-  
-  
-            <li>Modifier les détails d'un utilisateur :</li>  
-            <form action="ServletUsers" method="get">  
-                Login : <input type="text" name="login"/><br>  
-                Nom : <input type="text" name="nom"/><br>  
-                Prénom : <input type="text" name="prenom"/><br>  
-                <input type="hidden" name="action" value="updateUtilisateur"/>  
-                <input type="submit" value="Mettre à jour" name="submit"/>  
-            </form>  
-            
-            <li>Supprimer un utilisateur :</li>  
-            <form action="ServletUsers" method="get">  
-                Login : <input type="text" name="login"/><br>    
-                <input type="hidden" name="action" value="deleteUtilisateur"/>  
-                <input type="submit" value="Supprimer" name="submit"/>  
-            </form> 
-        </ol>  
+              
   
         <!-- Fin du menu -->  
   
@@ -166,8 +111,7 @@
         </main>
     
         <jsp:include page="footer.jsp"/>  
-        <footer>
-        </footer>      
+    
          <!--Import jQuery before materialize.js -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/materialize.min.js"></script>

@@ -20,6 +20,10 @@ and open the template in the editor.
     display: block;
 }
 
+h2 {
+        font-size: 1.56rem;
+}
+
 main {
     margin-top: 110px;
 }

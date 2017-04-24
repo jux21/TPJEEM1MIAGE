@@ -1,10 +1,9 @@
-<%--  
-    Document   : index  
-    Created on : 16 sept. 2009, 16:54:32  
-    Author     : michel buffa  
-    Debug glassFish : netstat -aon | find ":80" | find "LISTENING"
---%>  
-  
+<%-- 
+    Document   : showdetails
+    Created on : 24 avr. 2017, 23:44:11
+    Author     : Utilisateur
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>  
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
     "http://www.w3.org/TR/html4/loose.dtd">  
@@ -55,66 +54,15 @@
 
 <main>
 
-         
         <jsp:include page="sidenave.jsp"/> 
 
-     <h1>Gestionnaire d'utilisateurs</h1>  
-  
-  <a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</span></a>
-        <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
-        <c:if test="${!empty param['message']}">  
-            <h2>Reçu message : ${param.message}</h2>  
-        </c:if>  
-              
-  
-        <!-- Fin du menu -->  
-  
-        <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
-        <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >  
-            <h2>Liste des utilisateurs</h2>  
-  
-            <table border="10">  
-                <!-- La ligne de titre du tableau des comptes -->  
-                <tr>  
-                    <td><b>Login</b></td>  
-                    <td><b>Nom</b></td>  
-                    <td><b>Prénom</b></td>  
-                </tr>  
-  
-                <!-- Ici on affiche les lignes, une par utilisateur -->  
-                <!-- cette variable montre comment on peut utiliser JSTL et EL pour calculer -->  
-                <c:set var="total" value="0"/>  
-  
-                <c:forEach var="u" items="${requestScope['listeDesUsers']}">  
-                    <tr>  
-                        <td>${u.login}</td>  
-                        <td>${u.firstname}</td>  
-                        <td>${u.lastname}</td>  
-                        <!-- On compte le nombre de users -->  
-                        <c:set var="total" value="${total+1}"/>  
-                    </tr>  
-                </c:forEach>  
-  
-                <!-- Affichage du solde total dans la dernière ligne du tableau -->  
-                <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
-            </table>   
-            <a href="ServletUsers?action=nextResult">Next</a>
-            <a href="ServletUsers?action=previousResult">Previous</a>       
-        </c:if> 
-            
-            
-            
-               
-                
-                
 
-        </main>
-    
-        <jsp:include page="footer.jsp"/>  
-    
-         <!--Import jQuery before materialize.js -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/materialize.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
-    </body>  
+<h1>Afficher les détails d'un utilisateur</h1>  
+<form action="ServletUsers" method="get">  
+                login : <input type="text" name="login"/><br>  
+                <input type="hidden" name="action" value="chercherParLogin"/>  
+                <input type="submit" value="Chercher" name="submit"/>  
+            </form>  
+
+ </body>
 </html>
