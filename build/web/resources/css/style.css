@@ -14,6 +14,12 @@ and open the template in the editor.
     height: 64px;
 }
 
+.menulink {
+    line-height: 20px;
+    padding-top: 5px;
+    display: block;
+}
+
 main {
     margin-top: 110px;
 }

@@ -80,7 +80,7 @@
             <div class="label">
                 <label>Liste des fonctionnalités à implémenter dans la Servlet (note : après chaque action cette page sera rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</label>
             </div>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</pan></a></li>
             <li><a href="#!">Second Link</a></li>
             <li><div class="divider"></div></li>
             <li><a class="subheader">Subheader</a></li>
@@ -96,11 +96,10 @@
         </c:if>  
   
         <ul>  
-            <li><a href="ServletUsers?action=listerLesUtilisateurs">Afficher/raffraichir la liste de tous les utilisateurs</a></li>  
+            <li></li>  
             <p>  
         </ul>  
-            <h2>Liste des fonctionnalités à implémenter dans la Servlet (note : après chaque action cette page sera  
-                rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</h2>  
+             
         <ol>  
             <li><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>  
   
