@@ -32,9 +32,15 @@ public class GestionnaireUtilisateurs {
     public Collection<Utilisateur> getAllUsers() {  
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("SELECT u from Utilisateur u"); 
-        q.setFirstResult(actualPosition);
+        q.setFirstResult(0);
         q.setMaxResults(pagingJump);
         return q.getResultList();
+    }
+    
+    public int getNumberOfUsers() {  
+        // Exécution d'une requête équivalente à un select *  
+        Query q = em.createQuery("SELECT u from Utilisateur u");
+        return q.getResultList().size();
     }
     
     public Collection<Utilisateur> getNextUsersPaginated() {  

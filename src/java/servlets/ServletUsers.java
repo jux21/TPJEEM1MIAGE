@@ -40,12 +40,13 @@ public class ServletUsers extends HttpServlet {
         // Pratique pour décider de l'action à faire  
         String action = request.getParameter("action");  
         String forwardTo = "";  
-        String message = "";  
+        String message = "";
   
         if (action != null) {  
             if (action.equals("listerLesUtilisateurs")) {  
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 //forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
                 forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
                 message = "Liste des utilisateurs"; 
@@ -53,7 +54,8 @@ public class ServletUsers extends HttpServlet {
             } else if (action.equals("creerUtilisateursDeTest")) {  
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();  
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
-                request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("listeDesUsers", liste); 
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Création des utilisateurs de test";  
                 
@@ -61,6 +63,7 @@ public class ServletUsers extends HttpServlet {
                 gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Création de l'utilisateur "+request.getParameter("login");
                 
@@ -73,7 +76,8 @@ public class ServletUsers extends HttpServlet {
             } else if (action.equals("updateUtilisateur")) {   
                 gestionnaireUtilisateurs.updateUtilisateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("login")); 
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("listeDesUsers", liste);
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Modification de l'utilisateur "+request.getParameter("login");
                 
@@ -81,6 +85,7 @@ public class ServletUsers extends HttpServlet {
                 gestionnaireUtilisateurs.deleteUser(request.getParameter("login")); 
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste); 
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Suppression de l'utilisateur "+request.getParameter("login");
                 
@@ -95,7 +100,8 @@ public class ServletUsers extends HttpServlet {
                    forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=yes"; 
                 }
                 //forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                request.setAttribute("listeDesUsers", liste);    
+                request.setAttribute("listeDesUsers", liste); 
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 message = "Liste des utilisateurs"; 
                 
             } else if (action.equals("previousResult")) {  
@@ -109,7 +115,8 @@ public class ServletUsers extends HttpServlet {
                    forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=yes"; 
                 }
                 //forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                request.setAttribute("listeDesUsers", liste);   
+                request.setAttribute("listeDesUsers", liste); 
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 message = "Liste des utilisateurs";
                 
             } else {  
