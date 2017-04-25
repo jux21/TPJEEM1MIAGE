@@ -15,8 +15,11 @@
                         <span class="hide-on-small-only flow-text">TP JEE</span>
                     </a>     
                     <ul class="right hide-on-med-and-down">
-                        <li><a>login</a></li>
-                        <li><a>password</a></li>
+                        <li>login :</li>
+                         <li><input type="text" name="login_connexion"/></li>
+                          <li>password :</li>
+                           <li><input type="text" name="password"/></li>
+                            <li><a class="waves-effect waves-light btn"><input type="submit" value="envoyer" name="submit"/></a></li>
                     </ul>
                     <!--<ul class="tabs tabs-transparent">
                         <li class="tab"><a id="lien_menu_accueil" target="_self" href="/">Accueil</a></li>
@@ -26,4 +29,16 @@
                 </div>
             </nav>
         </header>
+
+ <!--Import jQuery before materialize.js -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/materialize.min.js"></script>
+        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+
+<script>$(document).ready(function(){
+    Materialize.updateTextFields();
+  });</script>
+
+
+ 
 

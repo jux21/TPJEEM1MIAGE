@@ -53,12 +53,14 @@
 <jsp:include page="header.jsp"/> 
 
 
+
 <main>
 
          
         <jsp:include page="sidenave.jsp"/> 
-
-     <h1>Gestionnaire d'utilisateurs</h1>  
+        
+        <p>Bienvenue sur le projet d'application Technologie Web M1 MIAGE 2016/2017.</p>
+ 
   
   <a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</span></a>
         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
@@ -112,9 +114,6 @@
     
         <jsp:include page="footer.jsp"/>  
     
-         <!--Import jQuery before materialize.js -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/materialize.min.js"></script>
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+        
     </body>  
 </html>

@@ -8,15 +8,24 @@
             <li><div class="userView">
             <div class="background"></div>
             <a class="circle" href="#!user"></a>
-            <a href="#!name"><span class="white-text name">John Doe</span></a>
-            <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            <a href="#!name"><span class="white-text name">Utilisateur</span></a>
+            <a href="#!email"><span class="white-text email">utilisateur@mail.fr</span></a>
             </div></li>
             <!--<h5>Menu de gestion des utilisateurs</h5>
             <div class="label">
                 <label>Liste des fonctionnalités à implémenter dans la Servlet (note : après chaque action cette page sera rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</label>
             </div>-->
+            <li><a class="subheader">Gestionnaire d'utilisateurs</a></li>
+            <li><div class="divider"></div></li>
             <li><a href="${pageContext.request.contextPath}/index.jsp">Accueil</a></li>
-            <li><a href="ServletUsers?action=creerUtilisateursDeTest">1. Créer 4 utilisateurs de test</a></li>
+            
+            
+            
+            
+            <li>
+                <div class="collapsible-header"><i class="material-icons"></i>
+                    <a href="ServletUsers?action=creerUtilisateursDeTest">1. Créer 4 utilisateurs de test</a></li>
+                </div>
         
             
             
@@ -76,7 +85,5 @@
        
             
             
-            <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Wahves</a></li>
+            
       </ul>

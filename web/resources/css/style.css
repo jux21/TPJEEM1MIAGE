@@ -55,6 +55,22 @@ main, footer {
         padding-top: 23px;
 }
 
+.nav-wrapper input[type=submit] {
+    padding-top: 9px;
+}
+
+.nav-wrapper input[type=text] {
+    border-bottom: 1px solid #fff;
+}
+
+.collapsible-body a {
+    width: 100%;
+}
+
+header nav.nav-extended {
+    height: 64px;
+} 
+
 .collapsible-body form {
     padding : 0 40px;
 }
