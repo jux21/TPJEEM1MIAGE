@@ -13,7 +13,7 @@ public class GestionnaireUtilisateurs {
     // à partir du contenu de persistence.xml  
     @PersistenceContext  
     private EntityManager em; 
-    private int actualPaging = 0;
+    private int actualPosition = 0;
     private int pagingJump = 3; 
   
     public void creerUtilisateursDeTest() {  
@@ -32,19 +32,45 @@ public class GestionnaireUtilisateurs {
     public Collection<Utilisateur> getAllUsers() {  
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("SELECT u from Utilisateur u"); 
-        q.setFirstResult(actualPaging);
+        q.setFirstResult(actualPosition);
         q.setMaxResults(pagingJump);
         return q.getResultList();
     }
     
-    public Collection<Utilisateur> getUsersPaginated() {  
+    public Collection<Utilisateur> getNextUsersPaginated() {  
+        // Exécution d'une requête équivalente à un select *  
+        Query q = em.createQuery("SELECT u from Utilisateur u");        
+        
+        // Si position element de début+pagination < taille de la liste on peut continuer la pagination next
+        if(this.actualPosition+pagingJump < q.getResultList().size())
+        {
+           this.actualPosition += pagingJump;
+            q.setFirstResult(actualPosition);
+            q.setMaxResults(pagingJump);
+            return q.getResultList(); 
+        }
+        System.out.println("max");
+        return null;
+         
+    }
+    
+    public Collection<Utilisateur> getPreviousUsersPaginated() {  
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("SELECT u from Utilisateur u"); 
-        this.actualPaging += pagingJump;
-        q.setFirstResult(actualPaging);
-        q.setMaxResults(pagingJump);
-        return q.getResultList();  
+        
+        // Si position element de début >= 1 on peut continuer pagination précédent
+        if(this.actualPosition >= 1)
+        {
+            this.actualPosition -= pagingJump;
+            q.setFirstResult(actualPosition);
+            q.setMaxResults(pagingJump);
+            return q.getResultList();
+        }
+        System.out.println("min");
+        return null;
+         
     }
+   
     
     public Collection<Utilisateur> getOneUserByLogin(String login) {
         // Exécution d'une requête équivalente à un select where login  

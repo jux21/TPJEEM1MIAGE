@@ -72,11 +72,16 @@
         </ol>  
   
         <!-- Fin du menu -->  
-  
+        
         <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
         <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >  
             <h2>Liste des utilisateurs</h2>  
-  
+            <c:if test="${param['moreNext'] == 'yes'}" > 
+                <a href="ServletUsers?action=nextResult">Next</a>
+            </c:if>
+            <c:if test="${param['morePrevious'] == 'yes'}" > 
+                <a href="ServletUsers?action=previousResult">Previous</a>
+            </c:if>
             <table border="10">  
                 <!-- La ligne de titre du tableau des comptes -->  
                 <tr>  
@@ -101,9 +106,8 @@
   
                 <!-- Affichage du solde total dans la dernière ligne du tableau -->  
                 <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
-            </table>  
-            <a href="ServletUsers?action=nextResult">Next</a>
-            <a href="ServletUsers?action=previousResult">Previous</a>
+            </table>
+                   
         </c:if>  
     </body>  
 </html>
