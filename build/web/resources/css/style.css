@@ -1,0 +1,92 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24 avr. 2017, 21:55:23
+    Author     : Utilisateur
+*/
+
+.nav-extended {
+    position: fixed;
+    top: 0px;
+    height: 64px;
+}
+
+.menulink {
+    line-height: 20px;
+    padding-top: 5px;
+    display: block;
+}
+
+h2 {
+        font-size: 1.56rem;
+}
+
+main {
+    margin-top: 110px;
+}
+
+#slide-out .label, #slide-out h5 {
+    padding: 0 32px;
+}
+nav.nav-extended .nav-wrapper {
+    min-height: 64px;
+    height: 64px;
+}
+
+.side-nav.fixed {
+    top:64px;
+}
+
+.side-nav .userView .background {
+    background: #595bd0; 
+}
+
+.side-nav .userView .circle {
+    background: #2c2e80;
+}
+main, footer {
+      padding-left: 320px;
+}
+
+.collapsible-body input[type=submit] {
+        padding-top: 23px;
+}
+
+.nav-wrapper input[type=submit] {
+    padding-top: 9px;
+}
+
+.nav-wrapper input[type=text] {
+    border-bottom: 1px solid #fff;
+}
+
+.collapsible-body a {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.side-nav li:last-child {
+    margin-bottom: 130px;
+}
+header nav.nav-extended {
+    height: 64px;
+} 
+
+.collapsible-body form {
+    padding : 0 40px;
+}
+
+.collapsible-body input {
+        margin-top: -15px;
+}
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+    
+

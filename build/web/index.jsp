@@ -2,6 +2,7 @@
     Document   : index  
     Created on : 16 sept. 2009, 16:54:32  
     Author     : michel buffa  
+    Debug glassFish : netstat -aon | find ":80" | find "LISTENING"
 --%>  
   
 <%@page contentType="text/html" pageEncoding="UTF-8"%>  
@@ -10,32 +11,56 @@
   
 <!-- Ne pas oublier cette ligne sinon tous les tags de la JSTL seront ignorés ! -->  
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
-  
+
 <html>  
     <head>  
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+        <!--Favicons-->
+        <link rel="apple-touch-icon" sizes="57x57" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="${pageContext.request.contextPath}/resources/favicons/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="${pageContext.request.contextPath}/resources/favicons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="${pageContext.request.contextPath}/resources/favicons/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="${pageContext.request.contextPath}/resources/favicons/favicon-16x16.png">
+        <link rel="manifest" href="/medias/favicons/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        
+        <!--Import materialize.css -->
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/materialize.css" /> 
+
+        <!--Let browser know website is optimized for mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      
+        <!--Custom stylesheet -->
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />  
+        
         <title>Gestionnaire d'utilisateurs</title>  
     </head>  
-    <body>  
+     <body> 
         <h1>Gestionnaire d'utilisateurs</h1>  
-  
-  
+    
+    <jsp:include page="header.jsp"/> 
+
         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
         <c:if test="${!empty param['message']}">  
             <h2>Reçu message : ${param.message}</h2>  
         </c:if>  
-  
-  
-        <h2>Menu de gestion des utilisateurs</h2>  
-        <ul>  
-            <li><a href="ServletUsers?action=listerLesUtilisateurs">Afficher/raffraichir la liste de tous les utilisateurs</a></li>  
-            <p>  
-        </ul>  
-            <h2>Liste des fonctionnalités à implémenter dans la Servlet (note : après chaque action cette page sera  
-                rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</h2>  
-        <ol>  
-            <li><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>  
-  
+
+
+    <main>
+
             <li>Créer un utilisateur</li>  
             <form action="ServletUsers" method="get">  
                 Nom : <input type="text" name="nom"/><br>  
@@ -45,15 +70,11 @@
                 <input type="hidden" name="action" value="creerUnUtilisateur"/>  
                 <input type="submit" value="Créer l'utilisateur" name="submit"/>  
             </form>  
-  
-            <li>Afficher les détails d'un utilisateur</li>  
-            <form action="ServletUsers" method="get">  
-                login : <input type="text" name="login"/><br>  
-                <input type="hidden" name="action" value="chercherParLogin"/>  
-                <input type="submit" value="Chercher" name="submit"/>  
-            </form>  
-  
-  
+         
+        <jsp:include page="sidenave.jsp"/> 
+        
+        <p>Bienvenue sur le projet d'application Technologie Web M1 MIAGE 2016/2017.</p>
+ 
             <li>Modifier les détails d'un utilisateur :</li>  
             <form action="ServletUsers" method="get">  
                 Login : <input type="text" name="login"/><br>  
@@ -62,14 +83,13 @@
                 <input type="hidden" name="action" value="updateUtilisateur"/>  
                 <input type="submit" value="Mettre à jour" name="submit"/>  
             </form>  
-            
-            <li>Supprimer un utilisateur :</li>  
-            <form action="ServletUsers" method="get">  
-                Login : <input type="text" name="login"/><br>    
-                <input type="hidden" name="action" value="deleteUtilisateur"/>  
-                <input type="submit" value="Supprimer" name="submit"/>  
-            </form> 
-        </ol>  
+  
+        <a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</span></a>
+        <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
+        <c:if test="${!empty param['message']}">  
+            <h2>Reçu message : ${param.message}</h2>  
+        </c:if>  
+              
   
         <!-- Fin du menu -->  
         
@@ -106,8 +126,10 @@
   
                 <!-- Affichage du solde total dans la dernière ligne du tableau -->  
                 <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
-            </table>
+            </table>             
                    
         </c:if>  
+        </main>
+        <jsp:include page="footer.jsp"/>  
     </body>  
 </html>

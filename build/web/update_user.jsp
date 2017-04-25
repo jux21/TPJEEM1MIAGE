@@ -1,10 +1,10 @@
-<%--  
-    Document   : index  
-    Created on : 16 sept. 2009, 16:54:32  
-    Author     : michel buffa  
-    Debug glassFish : netstat -aon | find ":80" | find "LISTENING"
---%>  
-  
+<%-- 
+    Document   : update_user
+    Created on : 24 avr. 2017, 23:44:25
+    Author     : Utilisateur
+--%>
+
+<  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>  
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
     "http://www.w3.org/TR/html4/loose.dtd">  
@@ -49,87 +49,23 @@
         <title>Gestionnaire d'utilisateurs</title>  
     </head>  
      <body> 
-        <h1>Gestionnaire d'utilisateurs</h1>  
     
-    <jsp:include page="header.jsp"/> 
-
-        <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
-        <c:if test="${!empty param['message']}">  
-            <h2>Reçu message : ${param.message}</h2>  
-        </c:if>  
+<jsp:include page="header.jsp"/> 
 
 
-    <main>
+<main>
 
-            <li>Créer un utilisateur</li>  
-            <form action="ServletUsers" method="get">  
-                Nom : <input type="text" name="nom"/><br>  
-                Prénom : <input type="text" name="prenom"/><br>  
-                Login : <input type="text" name="login"/><br>  
-                <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
-                <input type="hidden" name="action" value="creerUnUtilisateur"/>  
-                <input type="submit" value="Créer l'utilisateur" name="submit"/>  
-            </form>  
-         
         <jsp:include page="sidenave.jsp"/> 
         
-        <p>Bienvenue sur le projet d'application Technologie Web M1 MIAGE 2016/2017.</p>
- 
-            <li>Modifier les détails d'un utilisateur :</li>  
-            <form action="ServletUsers" method="get">  
+        <h1>Modifier les détails d'un utilisateur :</h1>
+        
+        <form action="ServletUsers" method="get">  
                 Login : <input type="text" name="login"/><br>  
                 Nom : <input type="text" name="nom"/><br>  
                 Prénom : <input type="text" name="prenom"/><br>  
                 <input type="hidden" name="action" value="updateUtilisateur"/>  
                 <input type="submit" value="Mettre à jour" name="submit"/>  
             </form>  
-  
-        <a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</span></a>
-        <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
-        <c:if test="${!empty param['message']}">  
-            <h2>Reçu message : ${param.message}</h2>  
-        </c:if>  
-              
-  
-        <!-- Fin du menu -->  
         
-        <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
-        <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >  
-            <h2>Liste des utilisateurs</h2>  
-            <c:if test="${param['moreNext'] == 'yes'}" > 
-                <a href="ServletUsers?action=nextResult">Next</a>
-            </c:if>
-            <c:if test="${param['morePrevious'] == 'yes'}" > 
-                <a href="ServletUsers?action=previousResult">Previous</a>
-            </c:if>
-            <table border="10">  
-                <!-- La ligne de titre du tableau des comptes -->  
-                <tr>  
-                    <td><b>Login</b></td>  
-                    <td><b>Nom</b></td>  
-                    <td><b>Prénom</b></td>  
-                </tr>  
-  
-                <!-- Ici on affiche les lignes, une par utilisateur -->  
-                <!-- cette variable montre comment on peut utiliser JSTL et EL pour calculer -->  
-                <c:set var="total" value="0"/>  
-  
-                <c:forEach var="u" items="${requestScope['listeDesUsers']}">  
-                    <tr>  
-                        <td>${u.login}</td>  
-                        <td>${u.firstname}</td>  
-                        <td>${u.lastname}</td>  
-                        <!-- On compte le nombre de users -->  
-                        <c:set var="total" value="${total+1}"/>  
-                    </tr>  
-                </c:forEach>  
-  
-                <!-- Affichage du solde total dans la dernière ligne du tableau -->  
-                <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
-            </table>             
-                   
-        </c:if>  
-        </main>
-        <jsp:include page="footer.jsp"/>  
-    </body>  
+         </body>
 </html>
