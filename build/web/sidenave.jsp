@@ -18,6 +18,7 @@
             <li><a class="subheader">Gestionnaire d'utilisateurs</a></li>
             <li><div class="divider"></div></li>
             <li><a href="${pageContext.request.contextPath}/index.jsp">Accueil</a></li>
+            <li><a href="${pageContext.request.contextPath}/consignes.jsp">Consignes</a></li>
             
             
             
