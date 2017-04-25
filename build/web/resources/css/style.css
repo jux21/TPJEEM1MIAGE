@@ -65,8 +65,12 @@ main, footer {
 
 .collapsible-body a {
     width: 100%;
+    margin-bottom: 20px;
 }
 
+.side-nav li:last-child {
+    margin-bottom: 130px;
+}
 header nav.nav-extended {
     height: 64px;
 } 
