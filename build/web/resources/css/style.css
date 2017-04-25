@@ -49,7 +49,19 @@ nav.nav-extended .nav-wrapper {
 }
 main, footer {
       padding-left: 320px;
-    }
+}
+
+.collapsible-body input[type=submit] {
+        padding-top: 23px;
+}
+
+.collapsible-body form {
+    padding : 0 40px;
+}
+
+.collapsible-body input {
+        margin-top: -15px;
+}
 
     @media only screen and (max-width : 992px) {
       header, main, footer {

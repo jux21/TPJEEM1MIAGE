@@ -4,7 +4,7 @@
     Author     : Utilisateur
 --%>
 
-<  
+  
 <%@page contentType="text/html" pageEncoding="UTF-8"%>  
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
     "http://www.w3.org/TR/html4/loose.dtd">  
@@ -65,7 +65,12 @@
                 Login : <input type="text" name="login"/><br>  
                 <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
                 <input type="hidden" name="action" value="creerUnUtilisateur"/>  
-                <input type="submit" value="Créer l'utilisateur" name="submit"/>  
-            </form>  
+                <a class="waves-effect waves-light btn"><input type="submit" value="Créer l'utilisateur" name="submit"></a>  
+            </form> 
+        
+        
+        
+        
+        
     </body>
 </html>

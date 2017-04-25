@@ -15,12 +15,67 @@
             <div class="label">
                 <label>Liste des fonctionnalités à implémenter dans la Servlet (note : après chaque action cette page sera rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</label>
             </div>-->
-            
+            <li><a href="${pageContext.request.contextPath}/index.jsp">Accueil</a></li>
             <li><a href="ServletUsers?action=creerUtilisateursDeTest">1. Créer 4 utilisateurs de test</a></li>
-            <li><a href="${pageContext.request.contextPath}/create_user.jsp">2. Créer un utilisateur</a></li>
-            <li><a href="${pageContext.request.contextPath}/show_details_user.jsp"><span class="menulink">3. Afficher les détails d'un utilisateur</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/update_user.jsp"><span class="menulink">4. Modifier les détails d'un utilisateur</span></a></li>
-            <li><a href="${pageContext.request.contextPath}/delete_user.jsp">5. Supprimer un utilisateur</a></li>
+        
+            
+            
+       <ul class="collapsible" data-collapsible="accordion">
+    
+    <li>
+      <div class="collapsible-header"><i class="material-icons"></i>2. Créer un utilisateur</div>
+              <div class="collapsible-body"><span>
+                <form action="ServletUsers" method="get">  
+                    Nom : <input type="text" name="nom"/><br>  
+                    Prénom : <input type="text" name="prenom"/><br>  
+                    Login : <input type="text" name="login"/><br>  
+                    <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
+                    <input type="hidden" name="action" value="creerUnUtilisateur"/>  
+                    <a class="waves-effect waves-light btn"><input type="submit" value="Créer l'utilisateur" name="submit"></a>  
+                </form>
+          </span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons"></i>3. Afficher les détails d'un utilisateur</div>
+              <div class="collapsible-body"><span>
+          <form action="ServletUsers" method="get">  
+                login : <input type="text" name="login"/><br>  
+                <input type="hidden" name="action" value="chercherParLogin"/>  
+                <a class="waves-effect waves-light btn"><input type="submit" value="Chercher" name="submit"/></a>  
+            </form>  
+          </span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons"></i>4. Modifier les détails d'un utilisateur</div>
+              <div class="collapsible-body"><span>
+                    <form action="ServletUsers" method="get">  
+                    Login : <input type="text" name="login"/><br>  
+                    Nom : <input type="text" name="nom"/><br>  
+                    Prénom : <input type="text" name="prenom"/><br>  
+                    <input type="hidden" name="action" value="updateUtilisateur"/>  
+                    <a class="waves-effect waves-light btn"><input type="submit" value="Mettre à jour" name="submit"/></a> 
+                </form>  
+          </span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons"></i>5. Supprimer un utilisateur</div>
+              <div class="collapsible-body"><span>
+                    <form action="ServletUsers" method="get">  
+                    Login : <input type="text" name="login"/><br>    
+                    <input type="hidden" name="action" value="deleteUtilisateur"/>  
+                    <a class="waves-effect waves-light btn"><input type="submit" value="Supprimer" name="submit"/></a>
+                </form> 
+          </span></div>
+    </li>
+  </ul>
+        
+        <script>$(document).ready(function(){
+    $('.collapsible').collapsible();
+  });</script>
+           
+       
+            
+            
             <li><div class="divider"></div></li>
             <li><a class="subheader">Subheader</a></li>
             <li><a class="waves-effect" href="#!">Third Link With Wahves</a></li>
