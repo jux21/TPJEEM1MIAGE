@@ -55,6 +55,21 @@ public class ServletUsers extends HttpServlet {
                     forwardTo = "index.jsp?action=";
                     message = "Connecté"; 
                     
+                     HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("LOGIN");
+        
+        if (session.isNew()) {
+            System.out.println("PAS COOO");
+        } else {
+          
+          
+            System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
+        
+        }
+        
+                    request.setAttribute("userlogin", session.getAttribute("LOGIN"));
+                    
+                    
 
                  
                           
@@ -154,17 +169,10 @@ public class ServletUsers extends HttpServlet {
         
        
         
-        HttpSession session = request.getSession();
-        String userName = (String) session.getAttribute("USER");
+       
         
-        if (session.isNew()) {
-            System.out.println("PAS COOO");
-        } else {
-          
-          
-            System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
-        
-        }
+ 
+
     }
 
     /**

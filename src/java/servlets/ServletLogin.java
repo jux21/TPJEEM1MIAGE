@@ -62,7 +62,7 @@ public class ServletLogin extends HttpServlet {
                 PrintWriter out = response.getWriter();
                 if(!user.isEmpty() && !request.getParameter("login_connexion").isEmpty()) {
                     HttpSession session = request.getSession();
-                    request.setAttribute("LOGIN", login); 
+                    session.setAttribute("LOGIN", login); 
                     response.sendRedirect("ServletUsers?action=connexion");
                 } else {
                     response.sendRedirect("invalidLogin.html"); 
