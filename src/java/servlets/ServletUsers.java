@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import utilisateurs.gestionnaires.GestionnaireUtilisateurs;
 import utilisateurs.modeles.Utilisateur;
 
@@ -41,9 +42,25 @@ public class ServletUsers extends HttpServlet {
         String action = request.getParameter("action");  
         String forwardTo = "";  
         String message = "";
+        
+        
   
-        if (action != null) {  
-            if (action.equals("listerLesUtilisateurs")) {  
+        if (action != null) {
+            if (action.equals("connexion")) {
+                //récupération des paramètres de la requête
+                String login = request.getParameter("loginuser");
+                String pwd = request.getParameter("loginuser");
+            
+                //soumettre les paramètres de la requête à la couche service et récupération du résultat
+                Utilisateur user = new Utilisateur(login, pwd);
+                HttpSession maSession = request.getSession();
+                
+                //réponse à l'utilisateur
+                RequestDispatcher dispatcher = request.getRequestDispatcher("resultatLogin.jsp");
+                dispatcher.forward(request, response);
+                
+            } else if (action.equals("listerLesUtilisateurs")) {
+                
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
                 request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
@@ -52,6 +69,7 @@ public class ServletUsers extends HttpServlet {
                 message = "Liste des utilisateurs"; 
                 
             } else if (action.equals("creerUtilisateursDeTest")) {  
+                
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();  
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste); 

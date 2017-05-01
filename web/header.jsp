@@ -13,14 +13,16 @@
                     <a href="/" class="brand-logo flow-text">
                         <i class="material-icons">stay_primary_portrait</i>
                         <span class="hide-on-small-only flow-text">TP JEE</span>
-                    </a>     
+                    </a> 
+                    <form action="ServletUsers" method="get">  
                     <ul class="right hide-on-med-and-down">
                         <li>login :</li>
                          <li><input type="text" name="login_connexion"/></li>
                           <li>password :</li>
                            <li><input type="text" name="password"/></li>
-                            <li><a class="waves-effect waves-light btn"><input type="submit" value="envoyer" name="submit"/></a></li>
+                            <li><a class="waves-effect waves-light btn"><input type="submit" value="envoyer" name="connexion"/></a></li>
                     </ul>
+                    </form>
                     <!--<ul class="tabs tabs-transparent">
                         <li class="tab"><a id="lien_menu_accueil" target="_self" href="/">Accueil</a></li>
                         <li class="tab"><a id="lien_menu_map" target="_self" href="/map">Consulter les données</a></li>
