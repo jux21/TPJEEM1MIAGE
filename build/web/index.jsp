@@ -59,6 +59,9 @@
 
     <main>
 
+        <c:if test="${empty param['LOGIN']}" >
+            <h1>OMG</h1>
+        </c:if>
          
         <jsp:include page="sidenave.jsp"/> 
         

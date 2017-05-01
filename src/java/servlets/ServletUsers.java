@@ -8,6 +8,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.Enumeration;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +26,7 @@ import utilisateurs.modeles.Utilisateur;
  */
 @WebServlet(name = "ServletUsers", urlPatterns = {"/ServletUsers"})
 public class ServletUsers extends HttpServlet {
+    
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
 
@@ -42,125 +44,118 @@ public class ServletUsers extends HttpServlet {
         String action = request.getParameter("action");  
         String forwardTo = "";  
         String message = "";
+        Boolean co = false;
         
+       
+        HttpSession session = request.getSession(true);
         
-  
-        if (action != null) {
-              if (action.equals("connexion")) {
-                 
-                  Collection<Utilisateur> user = gestionnaireUtilisateurs
-                    .getOneUserByLoginAndLastName(
-                        //récupération des paramètres de la requête
-                        request.getParameter("login_connexion"),
-                        request.getParameter("lastname_connexion")); 
+        if (session.isNew()) {
+            System.out.println("PAS COOO");
+        } else {
+          
+          
+        System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
+
+
+            if (action != null) {
                 
-                
-                request.setAttribute("listeDesUsers", user); 
-                
-                System.out.println("user:"+user.isEmpty());
-                
-                if(!user.isEmpty()) {
-                    HttpSession session = request.getSession(true);
-                     message = "Connecté.";
-                } else {
-                    message = "Votre login et mot de passe n'existe pas...";
-                }
-                
-                //soumettre les paramètres de la requête à la couche service et récupération du résultat
-                    //Utilisateur user = new Utilisateur(login, pwd);
-                    forwardTo = "index.jsp?action=connexion=envoyer"; 
-                    //réponse à l'utilisateur
+                 if (action.equals("connexion"))  {
+                    co = true;
+                    forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
+                    message = "Connecté"; 
                     
-                
-               // RequestDispatcher dispatcher = request.getRequestDispatcher("resultatLogin.jsp");
-               // dispatcher.forward(request, response);
+                }
                     
-                 
-                
-                
-            } else if (action.equals("listerLesUtilisateurs")) {
-                
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
-                request.setAttribute("listeDesUsers", liste);  
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
-                //forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
-                forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
-                message = "Liste des utilisateurs"; 
-                
-            } else if (action.equals("creerUtilisateursDeTest")) {  
-                
-                gestionnaireUtilisateurs.creerUtilisateursDeTest();  
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
-                request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
-                message = "Création des utilisateurs de test";  
-                
-            } else if (action.equals("creerUnUtilisateur")) {
-                gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
-                request.setAttribute("listeDesUsers", liste);  
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
-                message = "Création de l'utilisateur "+request.getParameter("login");
-                
-            } else if (action.equals("chercherParLogin")) {     
-                Collection<Utilisateur> user = gestionnaireUtilisateurs.getOneUserByLogin(request.getParameter("login")); 
-                request.setAttribute("listeDesUsers", user);  
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
-                message = "Utilisateur avec le login "+request.getParameter("login");
-                
-            } else if (action.equals("updateUtilisateur")) {   
-                gestionnaireUtilisateurs.updateUtilisateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("login")); 
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste);
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
-                message = "Modification de l'utilisateur "+request.getParameter("login");
-                
-            } else if (action.equals("deleteUtilisateur")) {     
-                gestionnaireUtilisateurs.deleteUser(request.getParameter("login")); 
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
-                request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
-                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
-                message = "Suppression de l'utilisateur "+request.getParameter("login");
-                
-            } else if (action.equals("nextResult")) {  
-                Collection<Utilisateur> liste = (Collection<Utilisateur>) gestionnaireUtilisateurs.getNextUsersPaginated(); 
-                if(liste == null)
-                {
-                   forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=no&morePrevious=yes"; 
-                }
-                else
-                {
-                   forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=yes"; 
-                }
-                //forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
-                message = "Liste des utilisateurs"; 
-                
-            } else if (action.equals("previousResult")) {  
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getPreviousUsersPaginated();  
-                if(liste == null)
-                {
-                   forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no"; 
-                }
-                else
-                {
-                   forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=yes"; 
-                }
-                //forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
-                message = "Liste des utilisateurs";
-                
-            } else {  
-                forwardTo = "index.jsp?action=todo";  
-                message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";  
-            }  
+                 else if (action.equals("listerLesUtilisateurs")) {
+
+                        Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                        request.setAttribute("listeDesUsers", liste);  
+                        request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                        //forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
+                        message = "Liste des utilisateurs"; 
+
+                    } else if (action.equals("creerUtilisateursDeTest")) {  
+
+                        gestionnaireUtilisateurs.creerUtilisateursDeTest();  
+                        Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                        request.setAttribute("listeDesUsers", liste); 
+                        request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                        message = "Création des utilisateurs de test";  
+
+                    } else if (action.equals("creerUnUtilisateur")) {
+                        gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
+                        Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                        request.setAttribute("listeDesUsers", liste);  
+                        request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                        message = "Création de l'utilisateur "+request.getParameter("login");
+
+                    } else if (action.equals("chercherParLogin")) {     
+                        Collection<Utilisateur> user = gestionnaireUtilisateurs.getOneUserByLogin(request.getParameter("login")); 
+                        request.setAttribute("listeDesUsers", user);  
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                        message = "Utilisateur avec le login "+request.getParameter("login");
+
+                    } else if (action.equals("updateUtilisateur")) {   
+                        gestionnaireUtilisateurs.updateUtilisateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("login")); 
+                        Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                        request.setAttribute("listeDesUsers", liste);
+                        request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                        message = "Modification de l'utilisateur "+request.getParameter("login");
+
+                    } else if (action.equals("deleteUtilisateur")) {     
+                        gestionnaireUtilisateurs.deleteUser(request.getParameter("login")); 
+                        Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                        request.setAttribute("listeDesUsers", liste); 
+                        request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                        forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                        message = "Suppression de l'utilisateur "+request.getParameter("login");
+
+                    } else if (action.equals("nextResult")) {  
+                        Collection<Utilisateur> liste = (Collection<Utilisateur>) gestionnaireUtilisateurs.getNextUsersPaginated(); 
+                        if(liste == null)
+                        {
+                           forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=no&morePrevious=yes"; 
+                        }
+                        else
+                        {
+                           forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=yes"; 
+                        }
+                        //forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                        request.setAttribute("listeDesUsers", liste); 
+                        request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                        message = "Liste des utilisateurs"; 
+
+                    } else if (action.equals("previousResult")) {  
+                        Collection<Utilisateur> liste = gestionnaireUtilisateurs.getPreviousUsersPaginated();  
+                        if(liste == null)
+                        {
+                           forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no"; 
+                        }
+                        else
+                        {
+                           forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=yes"; 
+                        }
+                        //forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                        request.setAttribute("listeDesUsers", liste); 
+                        request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                        message = "Liste des utilisateurs";
+
+                    } else {  
+                        forwardTo = "index.jsp?action=todo";  
+                        message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
+
+                    }
+            //} else {
+              // response.sendRedirect("LoginForm.html");
+              // message = "Veuillez-vous connecter";
             
+            } else {
+                message = "Veuillez-vous connecter";
+            }  
         }  
   
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);  
