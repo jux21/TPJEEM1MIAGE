@@ -77,12 +77,6 @@
         <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
         <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >  
             <h2>Liste des utilisateurs</h2>  
-            <c:if test="${param['moreNext'] == 'yes'}" > 
-                <a href="ServletUsers?action=nextResult">Next</a>
-            </c:if>
-            <c:if test="${param['morePrevious'] == 'yes'}" > 
-                <a href="ServletUsers?action=previousResult">Previous</a>
-            </c:if>
             <table border="10">  
                 <!-- La ligne de titre du tableau des comptes -->  
                 <tr>  
@@ -98,22 +92,28 @@
                 <c:forEach var="u" items="${requestScope['listeDesUsers']}">  
                     <tr>  
                         <td>${u.login}</td>  
-                        <td>${u.firstname}</td>  
                         <td>${u.lastname}</td>  
+                        <td>${u.firstname}</td>  
                         <!-- On compte le nombre de users -->  
                         <c:set var="total" value="${total+1}"/>  
                     </tr>  
                 </c:forEach>  
 
+                <c:set var="affiche" value="${fn:length(listeDesUsers)}"/>
+                <tr><td><b>Affichés</b></td><td></td><td><b>${affiche}</b></td><td></td></tr>
+                
                 <!-- Affichage du solde total dans la dernière ligne du tableau -->
                 <c:set var="total" value="${requestScope['numberOfUsers']}"/>
                 <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
             </table>    
             
             <!-- Zone pagination -->
-            <c:forEach var="count" begin="0" step="2" end="${fn:length(paginationPages)-1}">
-                <a href="ServletUsers?action=getUsersPaginated&start=${requestScope['paginationPages'][count]}&end=${requestScope['paginationPages'][count+1]}">${requestScope['paginationPages'][count]} - ${requestScope['paginationPages'][count+1]}</a>&nbsp;&nbsp;&nbsp;
-            </c:forEach>
+            
+            <c:if test="${fn:length(paginationPages) > 1}" >
+                <c:forEach var="count" begin="0" step="2" end="${fn:length(paginationPages)-1}">
+                    <a href="ServletUsers?action=getUsersPaginated&start=${requestScope['paginationPages'][count]}&end=${requestScope['paginationPages'][count+1]}">${requestScope['paginationPages'][count]} - ${requestScope['paginationPages'][count+1]}</a>&nbsp;&nbsp;&nbsp;
+                </c:forEach>
+            </c:if>
                    
         </c:if>  
         </main>
