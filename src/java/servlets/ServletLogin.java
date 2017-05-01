@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import utilisateurs.gestionnaires.GestionnaireUtilisateurs;
 import utilisateurs.modeles.Utilisateur;
-import static utilisateurs.modeles.Utilisateur_.login;
+//import static utilisateurs.modeles.Utilisateur.login;
 
 /**
  *
