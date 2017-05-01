@@ -5,7 +5,8 @@
     Debug glassFish : netstat -aon | find ":80" | find "LISTENING"
 --%>  
   
-<%@page contentType="text/html" pageEncoding="UTF-8"%>  
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
     "http://www.w3.org/TR/html4/loose.dtd">  
   
@@ -103,12 +104,16 @@
                         <c:set var="total" value="${total+1}"/>  
                     </tr>  
                 </c:forEach>  
-                
+
+                <!-- Affichage du solde total dans la dernière ligne du tableau -->
                 <c:set var="total" value="${requestScope['numberOfUsers']}"/>
-  
-                <!-- Affichage du solde total dans la dernière ligne du tableau -->  
                 <tr><td><b>TOTAL</b></td><td></td><td><b>${total}</b></td><td></td></tr>  
-            </table>             
+            </table>    
+            
+            <!-- Zone pagination -->
+            <c:forEach var="count" begin="0" step="2" end="${fn:length(paginationPages)-1}">
+                <a href="ServletUsers?action=getUsersPaginated&start=${requestScope['paginationPages'][count]}&end=${requestScope['paginationPages'][count+1]}">${requestScope['paginationPages'][count]} - ${requestScope['paginationPages'][count+1]}</a>&nbsp;&nbsp;&nbsp;
+            </c:forEach>
                    
         </c:if>  
         </main>

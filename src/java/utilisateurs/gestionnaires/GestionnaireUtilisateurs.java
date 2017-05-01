@@ -1,5 +1,6 @@
 package utilisateurs.gestionnaires;  
   
+import java.util.ArrayList;
 import java.util.Collection;  
 import javax.ejb.Stateless;  
 import javax.persistence.EntityManager;  
@@ -14,7 +15,7 @@ public class GestionnaireUtilisateurs {
     @PersistenceContext  
     private EntityManager em; 
     private int actualPosition = 0;
-    private int pagingJump = 3; 
+    private int pagination = 3; 
   
     public void creerUtilisateursDeTest() {  
         creeUtilisateur("John", "Lennon", "jlennon");  
@@ -33,14 +34,45 @@ public class GestionnaireUtilisateurs {
         // Exécution d'une requête équivalente à un select *  
         Query q = em.createQuery("SELECT u from Utilisateur u"); 
         q.setFirstResult(0);
-        q.setMaxResults(pagingJump);
+        q.setMaxResults(pagination);
         return q.getResultList();
     }
     
-    public int getNumberOfUsers() {  
-        // Exécution d'une requête équivalente à un select *  
-        Query q = em.createQuery("SELECT u from Utilisateur u");
-        return q.getResultList().size();
+    // On récupère le nombre de tuple dans la table et le nombre de pagination à faire
+    public ArrayList<Object> getNumberOfUsers() {  
+        ArrayList<Object> infos = new ArrayList<Object>();
+        Query q = em.createQuery("SELECT COUNT(u) from Utilisateur u");
+        infos.add(q.getSingleResult());
+        infos.add(Math.ceil((Long)q.getSingleResult()/pagination));
+        
+        return infos;
+    }
+    
+    public ArrayList<Integer> getPaginationInfos(long numberOfUsers)
+    {
+        ArrayList<Integer> bounds = new ArrayList<Integer>();
+        for(int i=0 ; i<numberOfUsers ; i+=pagination)
+        {
+            if(i+pagination>=numberOfUsers)
+            {
+                bounds.add(i+1);
+                bounds.add((int)numberOfUsers); 
+            }
+            else
+            {
+                bounds.add(i+1);
+                bounds.add(i+pagination);
+            }
+        }
+        return bounds;  
+    }
+    
+    public Collection<Utilisateur> getUsersPaginated(int start, int end)
+    {
+        Query q = em.createQuery("SELECT u from Utilisateur u"); 
+        q.setFirstResult(start);
+        q.setMaxResults(end-start);
+        return q.getResultList();
     }
     
     public Collection<Utilisateur> getNextUsersPaginated() {  
@@ -48,11 +80,11 @@ public class GestionnaireUtilisateurs {
         Query q = em.createQuery("SELECT u from Utilisateur u");        
         
         // Si position element de début+pagination < taille de la liste on peut continuer la pagination next
-        if(this.actualPosition+pagingJump < q.getResultList().size())
+        if(this.actualPosition+pagination < q.getResultList().size())
         {
-           this.actualPosition += pagingJump;
+           this.actualPosition += pagination;
             q.setFirstResult(actualPosition);
-            q.setMaxResults(pagingJump);
+            q.setMaxResults(pagination);
             return q.getResultList(); 
         }
         System.out.println("max");
@@ -67,9 +99,9 @@ public class GestionnaireUtilisateurs {
         // Si position element de début >= 1 on peut continuer pagination précédent
         if(this.actualPosition >= 1)
         {
-            this.actualPosition -= pagingJump;
+            this.actualPosition -= pagination;
             q.setFirstResult(actualPosition);
-            q.setMaxResults(pagingJump);
+            q.setMaxResults(pagination);
             return q.getResultList();
         }
         System.out.println("min");
@@ -101,4 +133,6 @@ public class GestionnaireUtilisateurs {
     
     // Add business logic below. (Right-click in editor and choose  
     // "Insert Code > Add Business Method")  
+
+
 }  

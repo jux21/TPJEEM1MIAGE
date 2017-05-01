@@ -46,7 +46,9 @@ public class ServletUsers extends HttpServlet {
             if (action.equals("listerLesUtilisateurs")) {  
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
                 //forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
                 forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
                 message = "Liste des utilisateurs"; 
@@ -55,7 +57,8 @@ public class ServletUsers extends HttpServlet {
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();  
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Création des utilisateurs de test";  
                 
@@ -63,7 +66,8 @@ public class ServletUsers extends HttpServlet {
                 gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Création de l'utilisateur "+request.getParameter("login");
                 
@@ -77,7 +81,8 @@ public class ServletUsers extends HttpServlet {
                 gestionnaireUtilisateurs.updateUtilisateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("login")); 
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste);
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Modification de l'utilisateur "+request.getParameter("login");
                 
@@ -85,9 +90,20 @@ public class ServletUsers extends HttpServlet {
                 gestionnaireUtilisateurs.deleteUser(request.getParameter("login")); 
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
                 request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Suppression de l'utilisateur "+request.getParameter("login");
+                   
+            } else if (action.equals("getUsersPaginated")) {
+          
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated(3,7);  
+                request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
+                message = "Liste des utilisateurs";
                 
             } else if (action.equals("nextResult")) {  
                 Collection<Utilisateur> liste = (Collection<Utilisateur>) gestionnaireUtilisateurs.getNextUsersPaginated(); 
@@ -101,7 +117,8 @@ public class ServletUsers extends HttpServlet {
                 }
                 //forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));;
                 message = "Liste des utilisateurs"; 
                 
             } else if (action.equals("previousResult")) {  
@@ -116,7 +133,8 @@ public class ServletUsers extends HttpServlet {
                 }
                 //forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 request.setAttribute("listeDesUsers", liste); 
-                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
+                request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
                 message = "Liste des utilisateurs";
                 
             } else {  
