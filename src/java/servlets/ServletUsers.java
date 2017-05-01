@@ -52,7 +52,7 @@ public class ServletUsers extends HttpServlet {
                 
                  if (action.equals("connexion"))  {
                     //co = true;
-                    forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
+                    forwardTo = "index.jsp?action=";
                     message = "Connecté"; 
                     
 

@@ -59,7 +59,7 @@ public class ServletLogin extends HttpServlet {
                // request.setAttribute("listeDesUsers", user); 
                 
                 isLoginValid(login);
-                
+                PrintWriter out = response.getWriter();
                 if(!user.isEmpty() && !request.getParameter("login_connexion").isEmpty()) {
                     HttpSession session = request.getSession();
                     request.setAttribute("LOGIN", login); 
