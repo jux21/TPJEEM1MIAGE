@@ -24,9 +24,15 @@ public class Utilisateur implements Serializable {
     private String firstname;  
     private String lastname;  
     private String login;
-
+    
     public Utilisateur() {
-        
+       
+    }
+
+    public Utilisateur(String login, String pwd) {
+        super();
+        this.login = login;
+        this.lastname = lastname;
     }
     
     public Utilisateur(String firstname, String lastname, String login) {

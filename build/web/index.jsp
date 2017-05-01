@@ -2,7 +2,7 @@
     Document   : index  
     Created on : 16 sept. 2009, 16:54:32  
     Author     : michel buffa  
-    Debug glassFish : netstat -aon | find ":80" | find "LISTENING"
+    Debug glassFish port occupied : netstat -aon | find ":80" | find "LISTENING"
 --%>  
   
 <%@page contentType="text/html" pageEncoding="UTF-8"%> 

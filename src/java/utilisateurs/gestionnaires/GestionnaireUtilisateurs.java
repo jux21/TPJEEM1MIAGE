@@ -116,6 +116,12 @@ public class GestionnaireUtilisateurs {
         return q.getResultList(); 
     }
     
+    public Collection<Utilisateur> getOneUserByLoginAndLastName(String login, String lastname) {
+        // Exécution d'une requête équivalente à un select where login  
+        Query q = em.createQuery("SELECT u FROM Utilisateur u WHERE u.login ='"+login+"'");  
+        return q.getResultList(); 
+    }
+    
     public int updateUtilisateur(String nom, String prenom, String login) {
         // Exécution d'une requête équivalente à un update where login    
         Query q = em.createQuery("UPDATE Utilisateur u SET u.lastname = '"+prenom+"', u.firstname = '"+nom+"' WHERE u.login = '"+login+"'");
