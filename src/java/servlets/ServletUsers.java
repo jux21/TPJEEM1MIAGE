@@ -64,6 +64,7 @@ public class ServletUsers extends HttpServlet {
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
                     message = "Connecté"; 
                     
+<<<<<<< HEAD
                 }
                     
                  else if (action.equals("listerLesUtilisateurs")) {
@@ -152,6 +153,79 @@ public class ServletUsers extends HttpServlet {
             //} else {
               // response.sendRedirect("LoginForm.html");
               // message = "Veuillez-vous connecter";
+=======
+                 
+                
+                
+            } else if (action.equals("listerLesUtilisateurs")) {
+                
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
+                message = "Liste des utilisateurs"; 
+                
+            } else if (action.equals("creerUtilisateursDeTest")) {  
+                
+                gestionnaireUtilisateurs.creerUtilisateursDeTest();  
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                request.setAttribute("listeDesUsers", liste); 
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                message = "Création des utilisateurs de test";  
+                
+            } else if (action.equals("creerUnUtilisateur")) {
+                gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                message = "Création de l'utilisateur "+request.getParameter("login");
+                
+            } else if (action.equals("chercherParLogin")) {     
+                Collection<Utilisateur> user = gestionnaireUtilisateurs.getOneUserByLogin(request.getParameter("login")); 
+                request.setAttribute("listeDesUsers", user);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos(user.size()));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                message = "Utilisateur avec le login "+request.getParameter("login");
+                
+            } else if (action.equals("updateUtilisateur")) {   
+                gestionnaireUtilisateurs.updateUtilisateur(request.getParameter("nom"),request.getParameter("prenom"),request.getParameter("login")); 
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                request.setAttribute("listeDesUsers", liste);
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                message = "Modification de l'utilisateur "+request.getParameter("login");
+                
+            } else if (action.equals("deleteUtilisateur")) {     
+                gestionnaireUtilisateurs.deleteUser(request.getParameter("login")); 
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();
+                request.setAttribute("listeDesUsers", liste); 
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                message = "Suppression de l'utilisateur "+request.getParameter("login");
+                   
+            } else if (action.equals("getUsersPaginated")) {
+          
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated(Integer.parseInt(request.getParameter("start")),Integer.parseInt(request.getParameter("end")));  
+                request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "Liste des utilisateurs";
+   
+            } else {  
+                forwardTo = "index.jsp?action=todo";  
+                message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";  
+            }  
+>>>>>>> a4321b67fbd2cc2edb4722aa4f8ca4f89fca72c2
             
             } else {
                 message = "Veuillez-vous connecter";
