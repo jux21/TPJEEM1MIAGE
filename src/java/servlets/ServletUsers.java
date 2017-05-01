@@ -46,18 +46,37 @@ public class ServletUsers extends HttpServlet {
         
   
         if (action != null) {
-            if (action.equals("connexion")) {
-                //récupération des paramètres de la requête
-                String login = request.getParameter("loginuser");
-                String pwd = request.getParameter("loginuser");
-            
-                //soumettre les paramètres de la requête à la couche service et récupération du résultat
-                Utilisateur user = new Utilisateur(login, pwd);
-                HttpSession maSession = request.getSession();
+              if (action.equals("connexion")) {
+                 
+                  Collection<Utilisateur> user = gestionnaireUtilisateurs
+                    .getOneUserByLoginAndLastName(
+                        //récupération des paramètres de la requête
+                        request.getParameter("login_connexion"),
+                        request.getParameter("lastname_connexion")); 
                 
-                //réponse à l'utilisateur
-                RequestDispatcher dispatcher = request.getRequestDispatcher("resultatLogin.jsp");
-                dispatcher.forward(request, response);
+                
+                request.setAttribute("listeDesUsers", user); 
+                
+                System.out.println("user:"+user.isEmpty());
+                
+                if(!user.isEmpty()) {
+                    HttpSession session = request.getSession(true);
+                     message = "Connecté.";
+                } else {
+                    message = "Votre login et mot de passe n'existe pas...";
+                }
+                
+                //soumettre les paramètres de la requête à la couche service et récupération du résultat
+                    //Utilisateur user = new Utilisateur(login, pwd);
+                    forwardTo = "index.jsp?action=connexion=envoyer"; 
+                    //réponse à l'utilisateur
+                    
+                
+               // RequestDispatcher dispatcher = request.getRequestDispatcher("resultatLogin.jsp");
+               // dispatcher.forward(request, response);
+                    
+                 
+                
                 
             } else if (action.equals("listerLesUtilisateurs")) {
                 
