@@ -37,7 +37,7 @@ public class ServletLogin extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs 
      * @throws IOException if an I/O error occurs 
      */  
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)  
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)  
             throws ServletException, IOException {  
         // Pratique pour décider de l'action à faire  
         String action = request.getParameter("action");  
@@ -54,10 +54,11 @@ public class ServletLogin extends HttpServlet {
                         login,
                         request.getParameter("lastname_connexion")); 
                 
-                  isLoginValid(login);
+                  
                 
                // request.setAttribute("listeDesUsers", user); 
                 
+                isLoginValid(login);
                 
                 if(!user.isEmpty() && !request.getParameter("login_connexion").isEmpty()) {
                     HttpSession session = request.getSession();

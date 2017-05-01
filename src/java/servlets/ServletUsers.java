@@ -29,6 +29,7 @@ public class ServletUsers extends HttpServlet {
     
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
+    
 
 
     /** 
@@ -44,23 +45,13 @@ public class ServletUsers extends HttpServlet {
         String action = request.getParameter("action");  
         String forwardTo = "";  
         String message = "";
-        Boolean co = false;
-        
        
-        HttpSession session = request.getSession(true);
-        
-        if (session.isNew()) {
-            System.out.println("PAS COOO");
-        } else {
-          
-          
-        System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
 
 
             if (action != null) {
                 
                  if (action.equals("connexion"))  {
-                    co = true;
+                    //co = true;
                     forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
                     message = "Connecté"; 
                     
@@ -137,9 +128,9 @@ public class ServletUsers extends HttpServlet {
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";  
             }  
             
-            } else {
-                message = "Veuillez-vous connecter";
-            }  
+         //   } else {
+           //     message = "Veuillez-vous connecter";
+            //}  
         }  
   
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);  
@@ -160,6 +151,20 @@ public class ServletUsers extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+       
+        
+        HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("USER");
+        
+        if (session.isNew()) {
+            System.out.println("PAS COOO");
+        } else {
+          
+          
+            System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
+        
+        }
     }
 
     /**

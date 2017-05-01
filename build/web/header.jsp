@@ -14,7 +14,7 @@
                         <i class="material-icons">stay_primary_portrait</i>
                         <span class="hide-on-small-only flow-text">TP JEE</span>
                     </a> 
-                    <form action="ServletLogin" method="get">  
+                    <form action="ServletLogin" method="post">  
                     <ul class="right hide-on-med-and-down">
                         <li>login :</li>
                          <li><input type="text" name="login_connexion"/></li>
