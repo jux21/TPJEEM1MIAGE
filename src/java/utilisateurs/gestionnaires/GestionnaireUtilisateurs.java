@@ -15,7 +15,7 @@ public class GestionnaireUtilisateurs {
     @PersistenceContext  
     private EntityManager em; 
     private int actualPosition = 0;
-    private int pagination = 3; 
+    private int pagination = 10; 
   
     public void creerUtilisateursDeTest() {  
         creeUtilisateur("John", "Lennon", "jlennon");  
@@ -70,8 +70,8 @@ public class GestionnaireUtilisateurs {
     public Collection<Utilisateur> getUsersPaginated(int start, int end)
     {
         Query q = em.createQuery("SELECT u from Utilisateur u"); 
-        q.setFirstResult(start);
-        q.setMaxResults(end-start);
+        q.setFirstResult(start-1);
+        q.setMaxResults(end-start+1);
         return q.getResultList();
     }
     

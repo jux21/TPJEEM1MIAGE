@@ -134,12 +134,13 @@ public class ServletUsers extends HttpServlet {
                    
             } else if (action.equals("getUsersPaginated")) {
           
-                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated(3,7);  
+                System.out.println("start "+request.getAttribute("start")+" "+"end "+request.getAttribute("end"));
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getUsersPaginated(Integer.parseInt(request.getParameter("start")),Integer.parseInt(request.getParameter("end")));  
                 request.setAttribute("listeDesUsers", liste);  
                 request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers().get(0));
                 request.setAttribute("numberOfPages", gestionnaireUtilisateurs.getNumberOfUsers().get(1));
                 request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
-                forwardTo = "index.jsp?action=listerLesUtilisateurs&moreNext=yes&morePrevious=no";
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
                 
             } else if (action.equals("nextResult")) {  
