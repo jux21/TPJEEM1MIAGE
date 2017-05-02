@@ -46,14 +46,6 @@ public class ServletUsers extends HttpServlet {
         String action = request.getParameter("action");  
         String forwardTo = "";  
         String message = "";
-       
-         
-
-        if (action != null) {
-             
-        }
-        
-        
         
         if (action != null) { 
             if (action.equals("connexion"))  {
