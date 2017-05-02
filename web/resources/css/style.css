@@ -83,6 +83,12 @@ header nav.nav-extended {
         margin-top: -15px;
 }
 
+.collapsible-body .btn-floating.green.center
+{
+   display: block;
+   margin: auto; 
+}
+
     @media only screen and (max-width : 992px) {
       header, main, footer {
         padding-left: 0;

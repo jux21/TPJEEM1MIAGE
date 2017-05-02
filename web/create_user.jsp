@@ -66,7 +66,8 @@
                 <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
                 <input type="hidden" name="action" value="creerUnUtilisateur"/>  
                 <a class="waves-effect waves-light btn"><input type="submit" value="Créer l'utilisateur" name="submit"></a>  
-            </form> 
+            </form>
+            
         
         
         
