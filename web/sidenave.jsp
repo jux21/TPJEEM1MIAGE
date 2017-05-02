@@ -8,8 +8,8 @@
             <li><div class="userView">
             <div class="background"></div>
             <a class="circle" href="#!user"></a>
-            <a href="#!name"><span class="white-text name">Utilisateur</span></a>
-            <a href="#!email"><span class="white-text email">utilisateur@mail.fr</span></a>
+            <a href="#!name"><span class="white-text name">${requestScope['userlogin']}</span></a>
+            <a href="#!email"><span class="white-text email">${requestScope['userlogin']}@mail.fr</span></a>
             </div></li>
             <!--<h5>Menu de gestion des utilisateurs</h5>
             <div class="label">

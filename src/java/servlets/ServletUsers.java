@@ -8,6 +8,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
+import java.util.Enumeration;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,8 +26,10 @@ import utilisateurs.modeles.Utilisateur;
  */
 @WebServlet(name = "ServletUsers", urlPatterns = {"/ServletUsers"})
 public class ServletUsers extends HttpServlet {
+    
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
+    
 
 
     /** 
@@ -42,41 +45,34 @@ public class ServletUsers extends HttpServlet {
         String action = request.getParameter("action");  
         String forwardTo = "";  
         String message = "";
-        
-        
-  
-        if (action != null) {
-              if (action.equals("connexion")) {
-                 
-                  Collection<Utilisateur> user = gestionnaireUtilisateurs
-                    .getOneUserByLoginAndLastName(
-                        //récupération des paramètres de la requête
-                        request.getParameter("login_connexion"),
-                        request.getParameter("lastname_connexion")); 
+       
+
+
+            if (action != null) {
                 
-                
-                request.setAttribute("listeDesUsers", user); 
-                
-                System.out.println("user:"+user.isEmpty());
-                
-                if(!user.isEmpty()) {
-                    HttpSession session = request.getSession(true);
-                     message = "Connecté.";
-                } else {
-                    message = "Votre login et mot de passe n'existe pas...";
-                }
-                
-                //soumettre les paramètres de la requête à la couche service et récupération du résultat
-                    //Utilisateur user = new Utilisateur(login, pwd);
-                    forwardTo = "index.jsp?action=connexion=envoyer"; 
-                    //réponse à l'utilisateur
+                 if (action.equals("connexion"))  {
+                    //co = true;
+                    forwardTo = "index.jsp?action=";
+                    message = "Connecté"; 
                     
-                
-               // RequestDispatcher dispatcher = request.getRequestDispatcher("resultatLogin.jsp");
-               // dispatcher.forward(request, response);
+                     HttpSession session = request.getSession();
+        String userName = (String) session.getAttribute("LOGIN");
+        
+        if (session.isNew()) {
+            System.out.println("PAS COOO");
+        } else {
+          
+          
+            System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
+        
+        }
+        
+                    request.setAttribute("userlogin", session.getAttribute("LOGIN"));
                     
+                    
+
                  
-                
+                          
                 
             } else if (action.equals("listerLesUtilisateurs")) {
                 
@@ -147,6 +143,9 @@ public class ServletUsers extends HttpServlet {
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";  
             }  
             
+         //   } else {
+           //     message = "Veuillez-vous connecter";
+            //}  
         }  
   
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);  
@@ -167,6 +166,13 @@ public class ServletUsers extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+       
+        
+       
+        
+ 
+
     }
 
     /**
