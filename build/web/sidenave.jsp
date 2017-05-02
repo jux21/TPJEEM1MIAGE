@@ -34,16 +34,19 @@
     
     <li>
       <div class="collapsible-header"><i class="material-icons"></i>2. Créer un utilisateur</div>
-              <div class="collapsible-body"><span>
-                <form action="ServletUsers" method="get">  
-                    Nom : <input type="text" name="nom"/><br>  
-                    Prénom : <input type="text" name="prenom"/><br>  
-                    Login : <input type="text" name="login"/><br>  
-                    <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
-                    <input type="hidden" name="action" value="creerUnUtilisateur"/>  
-                    <a class="waves-effect waves-light btn"><input type="submit" value="Créer l'utilisateur" name="submit"></a>  
-                </form>
-          </span></div>
+              <div class="collapsible-body">
+                  
+                    <form  action="ServletUsers" method="get">  
+                        Nom : <input type="text" name="nom"/><br>  
+                        Prénom : <input type="text" name="prenom"/><br>  
+                        Login : <input type="text" name="login"/><br> 
+                        <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
+                        <input type="hidden" name="action" value="creerUnUtilisateur"/> 
+                        <a class="waves-effect waves-light btn"><input type="submit" value="Créer utilisateur" name="submit"></a>
+                    </form> 
+                    <div id="containerForForms"></div>
+                    <button class="btn-floating btn-large waves-effect waves-light green center" onclick="addForm()"/></button>
+               </div>
     </li>
     <li>
       <div class="collapsible-header"><i class="material-icons"></i>3. Afficher les détails d'un utilisateur</div>

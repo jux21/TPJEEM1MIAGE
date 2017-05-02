@@ -23,6 +23,18 @@
             <file>file:/C:/MIAGE2/java/JEE/src/java/servlets/ServletLogin.java</file>
             <file>file:/C:/MIAGE2/java/JEE/src/java/utilisateurs/modeles/Utilisateur.java</file>
             <file>file:/C:/MIAGE2/java/JEE/src/java/servlets/ServletUsers.java</file>
+<<<<<<< HEAD
+=======
+            <file>file:/C:/MIAGE2/java/JEE/web/index.jsp</file>
+        </group>
+        <group>
+            <file>file:/Users/jux/NetBeansProjects/projet-tp2/src/java/servlets/ServletUsers.java</file>
+            <file>file:/Users/jux/NetBeansProjects/projet-tp2/web/index.jsp</file>
+            <file>file:/Users/jux/NetBeansProjects/projet-tp2/nbproject/build-impl.xml</file>
+            <file>file:/Users/jux/NetBeansProjects/projet-tp2/src/java/utilisateurs/gestionnaires/GestionnaireUtilisateurs.java</file>
+            <file>file:/Users/jux/NetBeansProjects/projet-tp2/web/sidenave.jsp</file>
+            <file>file:/Users/jux/NetBeansProjects/projet-tp2/web/resources/js/script.js</file>
+>>>>>>> 7b9fa95963979700a25b7f9f6c0e6a5711318876
         </group>
     </open-files>
 </project-private>
