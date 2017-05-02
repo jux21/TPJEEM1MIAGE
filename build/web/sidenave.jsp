@@ -9,7 +9,7 @@
             <div class="background"></div>
             <a class="circle" href="#!user"></a>
             <a href="#!name"><span class="white-text name">${requestScope['userlogin']}</span></a>
-            <a href="#!email"><span class="white-text email">${requestScope['userlogin']}@mail.fr</span></a>
+            <a href="#!email"><span class="white-text email"> </span></a>
             </div></li>
             <!--<h5>Menu de gestion des utilisateurs</h5>
             <div class="label">
@@ -17,11 +17,8 @@
             </div>-->
             <li><a class="subheader">Gestionnaire d'utilisateurs</a></li>
             <li><div class="divider"></div></li>
-            <li><a href="${pageContext.request.contextPath}/index.jsp">Accueil</a></li>
-            <li><a href="${pageContext.request.contextPath}/consignes.jsp">Consignes</a></li>
-            
-            
-            
+            <li><a href="${pageContext.request.contextPath}/ServletUsers?action=">Accueil</a></li>
+            <li><a href="${pageContext.request.contextPath}/consignes.jsp?action=">Consignes</a></li>
             
             <li>
                 <div class="collapsible-header"><i class="material-icons"></i>

@@ -1,10 +1,16 @@
 <%-- 
     Document   : header
     Created on : 24 avr. 2017, 23:38:19
-    Author     : Cécile
+    Author     : CÃ©cile
 --%>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+    "http://www.w3.org/TR/html4/loose.dtd">  
+  
+<!-- Ne pas oublier cette ligne sinon tous les tags de la JSTL seront ignorÃ©s ! -->  
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>  
    
         <header>
             <!--HEADER-->
@@ -13,20 +19,37 @@
                     <a href="/" class="brand-logo flow-text">
                         <i class="material-icons">stay_primary_portrait</i>
                         <span class="hide-on-small-only flow-text">TP JEE</span>
-                    </a> 
-                    <form action="ServletLogin" method="post">  
-                    <ul class="right hide-on-med-and-down">
-                        <li>login :</li>
-                         <li><input type="text" name="login_connexion"/></li>
-                          <li>password :</li>
-                           <li><input type="text" name="password"/></li>
-                           <input type="hidden" name="action" value="connexion"/>
-                            <li><a class="waves-effect waves-light btn"><input type="submit" value="envoyer" name="connexion"/></a></li>
-                    </ul>
-                    </form>
+                    </a>
+                    
+                    <c:if test="${ empty requestScope['userlogin']}">
+                        
+                        <form action="ServletLogin" method="post">  
+                        <ul class="right hide-on-med-and-down">
+                            <li>login :</li>
+                             <li><input type="text" name="login_connexion"/></li>
+                              <li>password :</li>
+                               <li><input type="text" name="password"/></li>
+                               <input type="hidden" name="action" value="connexion"/>
+                                <li><a class="waves-effect waves-light btn"><input type="submit" value="connexion" name="connexion"/></a></li>
+                        </ul>
+                        </form>
+                        
+                    </c:if>
+                    
+                     <c:if test="${ !empty requestScope['userlogin']}">
+                        
+                        <form action="ServletLogout" method="post">  
+                        <ul class="right hide-on-med-and-down">
+                            
+                               <input type="hidden" name="action" value="deconnexion"/>
+                                <li><a href="${pageContext.request.contextPath}/index.jsp" class="waves-effect waves-light btn">Deconnexion</a></li>
+                        </ul>
+                        </form>
+                        
+                    </c:if>
                     <!--<ul class="tabs tabs-transparent">
                         <li class="tab"><a id="lien_menu_accueil" target="_self" href="/">Accueil</a></li>
-                        <li class="tab"><a id="lien_menu_map" target="_self" href="/map">Consulter les données</a></li>
+                        <li class="tab"><a id="lien_menu_map" target="_self" href="/map">Consulter les donnÃ©es</a></li>
                         <li class="tab"><a id="lien_menu_list" target="_self" href="/list">Liste des monuments</a></li>
                     </ul>-->
                 </div>
