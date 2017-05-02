@@ -41,15 +41,25 @@
                         Prénom : <input type="text" name="prenom"/><br>  
                         Login : <input type="text" name="login"/><br> 
                         <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->  
-                        <input type="hidden" name="action" value="creerUnUtilisateur"/> 
+                        <br><input type="hidden" name="action" value="creerUnUtilisateur"/> 
                         <a class="waves-effect waves-light btn"><input type="submit" value="Créer utilisateur" name="submit"></a>
                     </form> 
                     <div id="containerForForms"></div>
-                    <button class="btn-floating btn-large waves-effect waves-light green center" onclick="addForm()"/></button>
+                    <button class="btn-floating btn-large waves-effect waves-light green center" onclick="addAddForm()"/></button> 
                </div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="material-icons"></i>3. Afficher les détails d'un utilisateur</div>
+      <div class="collapsible-header"><i class="material-icons"></i>3. Génération d'utilisateurs </div>
+        <div class="collapsible-body"><span>
+            <form action="ServletUsers" method="get">  
+                Nombre d'utilisateurs à générer : <input type="text" name="nbUser"/><br>  
+                <input type="hidden" name="action" value="generateUsers"/>  
+                <a class="waves-effect waves-light btn"><input type="submit" value="Générer" name="submit"/></a>  
+            </form>  
+          </span></div>
+    </li>
+    <li>
+      <div class="collapsible-header"><i class="material-icons"></i>4. Afficher les détails d'un utilisateur</div>
               <div class="collapsible-body"><span>
           <form action="ServletUsers" method="get">  
                 login : <input type="text" name="login"/><br>  
@@ -59,7 +69,7 @@
           </span></div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="material-icons"></i>4. Modifier les détails d'un utilisateur</div>
+      <div class="collapsible-header"><i class="material-icons"></i>5. Modifier les détails d'un utilisateur</div>
               <div class="collapsible-body"><span>
                     <form action="ServletUsers" method="get">  
                     Login : <input type="text" name="login"/><br>  
@@ -71,7 +81,7 @@
           </span></div>
     </li>
     <li>
-      <div class="collapsible-header"><i class="material-icons"></i>5. Supprimer un utilisateur</div>
+      <div class="collapsible-header"><i class="material-icons"></i>6. Supprimer un utilisateur</div>
               <div class="collapsible-body"><span>
                     <form action="ServletUsers" method="get">  
                     Login : <input type="text" name="login"/><br>    

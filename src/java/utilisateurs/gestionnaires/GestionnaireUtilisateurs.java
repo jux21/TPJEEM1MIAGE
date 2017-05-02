@@ -1,5 +1,9 @@
 package utilisateurs.gestionnaires;  
   
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;  
 import javax.ejb.Stateless;  
@@ -15,6 +19,7 @@ public class GestionnaireUtilisateurs {
     @PersistenceContext  
     private EntityManager em;
     private int pagination = 10; 
+    private String csvFile = "/Users/jux/NetBeansProjects/projet-tp2/web/resources/dataCSV/dataSetUsers.csv";
   
     public void creerUtilisateursDeTest() {  
         creeUtilisateur("John", "Lennon", "jlennon");  
@@ -28,6 +33,21 @@ public class GestionnaireUtilisateurs {
         em.persist(u);  
         return u;  
     }  
+    
+    public void generateUsers(int nbUsers) throws FileNotFoundException, IOException
+    {
+        String line = "";
+        String cvsSplitBy = ",";
+        BufferedReader br = new BufferedReader(new FileReader(csvFile));
+ 
+        for(int i=0 ; i<nbUsers ; i++)
+        {
+            line = br.readLine();
+            String[] user = line.split(cvsSplitBy);
+            Utilisateur u = new Utilisateur(user[0], user[1], user[2]);  
+            em.persist(u);  
+        }
+    }
   
     public Collection<Utilisateur> getAllUsers() {  
         // Exécution d'une requête équivalente à un select *  

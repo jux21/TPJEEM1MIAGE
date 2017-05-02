@@ -94,6 +94,9 @@ public class ServletUsers extends HttpServlet {
                 message = "Création des utilisateurs de test";  
                 
             } else if (action.equals("creerUnUtilisateur")) {
+                
+                // Chercher les paramètres name+cpt si les données viennent des formulaires d'ajouts en cascade
+                
                 gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
@@ -101,6 +104,16 @@ public class ServletUsers extends HttpServlet {
                 request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";  
                 message = "Création de l'utilisateur "+request.getParameter("login");
+                
+            } else if (action.equals("generateUsers")) {
+                
+                gestionnaireUtilisateurs.generateUsers(Integer.parseInt(request.getParameter("nbUser")));
+                Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
+                request.setAttribute("listeDesUsers", liste);  
+                request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
+                request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";  
+                message = "Génération de "+request.getParameter("nbUser")+" utilisateurs";
                 
             } else if (action.equals("chercherParLogin")) {     
                 Collection<Utilisateur> user = gestionnaireUtilisateurs.getOneUserByLogin(request.getParameter("login")); 
