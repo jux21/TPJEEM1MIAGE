@@ -7,10 +7,29 @@
             <file>file:/Users/jux/NetBeansProjects/projet-tp2/web/index.jsp</file>
             <file>file:/Users/jux/NetBeansProjects/projet-tp2/nbproject/build-impl.xml</file>
             <file>file:/Users/jux/NetBeansProjects/projet-tp2/src/java/utilisateurs/gestionnaires/GestionnaireUtilisateurs.java</file>
+<<<<<<< HEAD
             <file>file:/Users/jux/NetBeansProjects/projet-tp2/web/sidenave.jsp</file>
             <file>file:/Users/jux/NetBeansProjects/projet-tp2/src/java/utilisateurs/modeles/Utilisateur.java</file>
             <file>file:/Users/jux/NetBeansProjects/projet-tp2/src/java/servlets/ServletLogin.java</file>
             <file>file:/Users/jux/NetBeansProjects/projet-tp2/web/resources/js/script.js</file>
+=======
+        </group>
+        <group name="Group 20170424-09:17:15">
+            <file>file:/C:/MIAGE2/java/JEE/web/header.jsp</file>
+            <file>file:/C:/MIAGE2/java/JEE/nbproject/build-impl.xml</file>
+            <file>file:/C:/MIAGE2/java/JEE/web/sidenave.jsp</file>
+            <file>file:/C:/MIAGE2/java/JEE/src/java/servlets/login.java</file>
+            <file>file:/C:/MIAGE2/java/JEE/web/index.jsp</file>
+            <file>file:/C:/MIAGE2/java/JEE/invalidLogin.html</file>
+            <file>file:/C:/MIAGE2/java/JEE/web/resultatLogin.jsp</file>
+            <file>file:/C:/MIAGE2/java/JEE/src/java/servlets/ServletLogout.java</file>
+            <file>file:/C:/MIAGE2/java/JEE/web/login.html</file>
+            <file>file:/C:/MIAGE2/java/JEE/src/java/utilisateurs/gestionnaires/GestionnaireUtilisateurs.java</file>
+            <file>file:/C:/MIAGE2/java/JEE/web/invalidLogin.html</file>
+            <file>file:/C:/MIAGE2/java/JEE/src/java/servlets/ServletLogin.java</file>
+            <file>file:/C:/MIAGE2/java/JEE/src/java/utilisateurs/modeles/Utilisateur.java</file>
+            <file>file:/C:/MIAGE2/java/JEE/src/java/servlets/ServletUsers.java</file>
+>>>>>>> 61bb7560a35022630e6b026a8aa13d8660916ecd
         </group>
     </open-files>
 </project-private>

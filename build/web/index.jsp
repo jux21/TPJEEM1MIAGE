@@ -68,7 +68,15 @@
         
         <p>Bienvenue sur le projet d'application Technologie Web M1 MIAGE 2016/2017.</p>
  
+        
+         <c:if test="${! empty requestScope['userlogin']}">
+         
+   
+        
+       
         <a href="ServletUsers?action=listerLesUtilisateurs"><span class="menulink">Afficher/raffraichir la liste de tous les utilisateurs</span></a>
+        
+         </c:if>
         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
         <c:if test="${!empty param['message']}">  
             <h2>Reçu message : ${param.message}</h2>  
