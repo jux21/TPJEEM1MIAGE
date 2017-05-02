@@ -30,7 +30,8 @@ public class ServletUsers extends HttpServlet {
     @EJB
     private GestionnaireUtilisateurs gestionnaireUtilisateurs;
     
-
+   HttpSession session;
+    String login;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods. 
@@ -46,35 +47,22 @@ public class ServletUsers extends HttpServlet {
         String forwardTo = "";  
         String message = "";
        
+         
 
-
-            if (action != null) {
-                
-                 if (action.equals("connexion"))  {
-                    //co = true;
-                    forwardTo = "index.jsp?action=";
-                    message = "Connecté"; 
-                    
-                     HttpSession session = request.getSession();
-        String userName = (String) session.getAttribute("LOGIN");
-        
-        if (session.isNew()) {
-            System.out.println("PAS COOO");
-        } else {
-          
-          
-            System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
-        
+        if (action != null) {
+             
         }
         
-                    request.setAttribute("userlogin", session.getAttribute("LOGIN"));
-                    
-                    
-
-                 
-                          
-                
-            } else if (action.equals("listerLesUtilisateurs")) {
+        
+        
+        if (action != null) { 
+            if (action.equals("connexion"))  {
+                forwardTo = "index.jsp?action=";
+                message = "Connecté"; 
+                session = request.getSession();
+                login = (String) session.getAttribute("LOGIN");  
+             }
+            else if (action.equals("listerLesUtilisateurs")) {
                 
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
@@ -146,7 +134,17 @@ public class ServletUsers extends HttpServlet {
          //   } else {
            //     message = "Veuillez-vous connecter";
             //}  
-        }  
+        }
+        
+        if (login != null) {
+            request.setAttribute("userlogin", login);
+        }
+
+        if (session.isNew()) {
+            System.out.println("PAS COOO");
+        } else {
+            System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
+        } 
   
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);  
         dp.forward(request, response);  

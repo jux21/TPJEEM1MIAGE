@@ -60,9 +60,11 @@
 
     <main>
 
-
+     <%--  <c:if test="${! empty requestScope['userlogin']}">--%>
          
         <jsp:include page="sidenave.jsp"/> 
+        
+       <%-- </c:if>--%>
         
         <p>Bienvenue sur le projet d'application Technologie Web M1 MIAGE 2016/2017.</p>
  
