@@ -165,7 +165,7 @@
                 book.login = document.querySelector("#form_crea_u_login").value;
                 book.action = document.querySelector("#form_crea_u_action").value;
 
-                var url = "http://localhost:8080/JEE/ServletUsers?action=creerUnUtilisateur&nom="+book.nom+"&prenom="+book.prenom+"&login="+book.login;
+                var url = "http://localhost:8080/projet-tp2/ServletUsers?action=creerUnUtilisateur&nom="+book.nom+"&prenom="+book.prenom+"&login="+book.login;
 
                 // Envoi de la requête Ajax
                 var xhr = new XMLHttpRequest();
@@ -182,9 +182,31 @@
 
                 xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
                 xhr.send(JSON.stringify(book));
-
+                reloadUsers();
                 return false;
 
+            }
+            
+            function reloadUsers() {
+                var url = "http://localhost:8080/projet-tp2/ServletUsers?action=listerLesUtilisateurs";
+
+                // Envoi de la requête Ajax
+                var xhr = new XMLHttpRequest();
+                xhr.open('get', url, true);
+
+                xhr.onloadend = function () {
+                    console.log("User créer");
+
+                    // refresh the table
+                   // showBooks(JSON.parse(this.response));
+                    // Reset the form
+                    document.querySelector("#form_crea_u").reset();
+                };
+
+                xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+                xhr.send();
+
+                return false;
             }
        </script>
            

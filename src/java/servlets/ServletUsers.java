@@ -55,7 +55,6 @@ public class ServletUsers extends HttpServlet {
                 login = (String) session.getAttribute("LOGIN");  
              }
             else if (action.equals("listerLesUtilisateurs")) {
-                
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
                 request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
