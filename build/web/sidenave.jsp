@@ -198,7 +198,7 @@
                     console.log("User créer");
 
                     // refresh the table
-                   // showBooks(JSON.parse(this.response));
+                    //showBooks(JSON.parse(this.response));
                     // Reset the form
                     document.querySelector("#form_crea_u").reset();
                 };
