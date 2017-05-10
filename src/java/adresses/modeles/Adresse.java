@@ -17,10 +17,17 @@ import javax.persistence.Id;
  */
 @Entity
 public class Adresse implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private int id,
+                num;
+    private String CP,
+                   ville,
+                   pays,
+                   rue;
+    
 
     public int getId() {
         return id;
@@ -33,7 +40,7 @@ public class Adresse implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) id;
+        hash += (int) getId();
         return hash;
     }
 
@@ -44,7 +51,7 @@ public class Adresse implements Serializable {
             return false;
         }
         Adresse other = (Adresse) object;
-        if (this.id != other.id) {
+        if (this.getId() != other.getId()) {
             return false;
         }
         return true;
@@ -52,7 +59,77 @@ public class Adresse implements Serializable {
 
     @Override
     public String toString() {
-        return "adresses.modeles.Adresse[ id=" + id + " ]";
+        return "adresses.modeles.Adresse[ id=" + getId() + " ]";
+    }
+
+    /**
+     * @return the num
+     */
+    public int getNum() {
+        return num;
+    }
+
+    /**
+     * @param num the num to set
+     */
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    /**
+     * @return the CP
+     */
+    public String getCP() {
+        return CP;
+    }
+
+    /**
+     * @param CP the CP to set
+     */
+    public void setCP(String CP) {
+        this.CP = CP;
+    }
+
+    /**
+     * @return the ville
+     */
+    public String getVille() {
+        return ville;
+    }
+
+    /**
+     * @param ville the ville to set
+     */
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+    /**
+     * @return the pays
+     */
+    public String getPays() {
+        return pays;
+    }
+
+    /**
+     * @param pays the pays to set
+     */
+    public void setPays(String pays) {
+        this.pays = pays;
+    }
+
+    /**
+     * @return the rue
+     */
+    public String getRue() {
+        return rue;
+    }
+
+    /**
+     * @param rue the rue to set
+     */
+    public void setRue(String rue) {
+        this.rue = rue;
     }
     
 }
