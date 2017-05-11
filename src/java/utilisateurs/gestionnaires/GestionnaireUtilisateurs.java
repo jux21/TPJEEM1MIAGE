@@ -12,7 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;  
 import utilisateurs.modeles.Utilisateur; 
 import adresses.modeles.Adresse;
-import java.util.List;
+import telephones.modeles.Telephone;
   
 @Stateless  
 public class GestionnaireUtilisateurs {  
@@ -33,10 +33,15 @@ public class GestionnaireUtilisateurs {
     public Utilisateur creeUtilisateur(String nom, String prenom, String login) { 
         Utilisateur u = new Utilisateur(prenom, nom, login);
         
-        Adresse a = new Adresse(94,"Chemin de Guiran","83210","SOLLIES-TOUCAS","France");
-        ArrayList<Adresse> la = new ArrayList<Adresse>();
-        la.add(a);
-        u.setAdresses(la);
+        ArrayList<Adresse> adresses = new ArrayList<Adresse>();
+        adresses.add(new Adresse(94,"Chemin de Guiran","83210","SOLLIES-TOUCAS","France"));
+        adresses.add(new Adresse(23,"Rue des Ponchettes","06000","NICE","France"));
+        u.setAdresses(adresses);
+        
+        ArrayList<Telephone> telephones = new ArrayList<Telephone>();
+        telephones.add(new Telephone("0688108609"));
+        telephones.add(new Telephone("0607455028"));
+        u.setTelephones(telephones);
         
         em.persist(u);  
         return u;  

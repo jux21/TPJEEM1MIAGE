@@ -5,9 +5,7 @@
  */
 package utilisateurs.modeles;
 
-import adresses.modeles.Adresse;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import telephones.modeles.Telephone;
+import adresses.modeles.Adresse;
 
 /**
  *
@@ -30,8 +29,10 @@ public class Utilisateur implements Serializable {
     private String firstname;  
     private String lastname;  
     private String login;
+    
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Adresse> adresses;
+    
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Telephone> telephones;
     
@@ -65,6 +66,14 @@ public class Utilisateur implements Serializable {
 
     public void setAdresses(List<Adresse> adresses) {
         this.adresses = adresses;
+    }
+    
+    public List<Telephone> getTelephones() {
+        return telephones;
+    }
+
+    public void setTelephones(List<Telephone> telephones) {
+        this.telephones = telephones;
     }
 
     public String getLastname() {
