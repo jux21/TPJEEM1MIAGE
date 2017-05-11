@@ -29,7 +29,7 @@ public class GestionnaireUtilisateurs {
     }  
   
     public Utilisateur creeUtilisateur(String nom, String prenom, String login) {  
-        Utilisateur u = new Utilisateur(nom, prenom, login);  
+        Utilisateur u = new Utilisateur(prenom, nom, login);  
         em.persist(u);  
         return u;  
     }  
@@ -103,7 +103,7 @@ public class GestionnaireUtilisateurs {
     
     public int updateUtilisateur(String nom, String prenom, String login) {
         // Exécution d'une requête équivalente à un update where login    
-        Query q = em.createQuery("UPDATE Utilisateur u SET u.lastname = '"+prenom+"', u.firstname = '"+nom+"' WHERE u.login = '"+login+"'");
+        Query q = em.createQuery("UPDATE Utilisateur u SET u.lastname = '"+nom+"', u.firstname = '"+prenom+"' WHERE u.login = '"+login+"'");
         return q.executeUpdate();
     }
     
