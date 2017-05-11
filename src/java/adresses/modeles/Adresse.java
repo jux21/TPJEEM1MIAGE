@@ -21,8 +21,9 @@ public class Adresse implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id,
-                num;
+    private int id;
+    
+    private int num;
     private String CP,
                    ville,
                    pays,
