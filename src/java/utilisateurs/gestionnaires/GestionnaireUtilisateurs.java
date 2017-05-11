@@ -10,7 +10,9 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;  
 import javax.persistence.PersistenceContext;  
 import javax.persistence.Query;  
-import utilisateurs.modeles.Utilisateur;  
+import utilisateurs.modeles.Utilisateur; 
+import adresses.modeles.Adresse;
+import java.util.List;
   
 @Stateless  
 public class GestionnaireUtilisateurs {  
@@ -28,8 +30,12 @@ public class GestionnaireUtilisateurs {
         creeUtilisateur("Georges", "Harisson", "georgesH");  
     }  
   
-    public Utilisateur creeUtilisateur(String nom, String prenom, String login) {  
-        Utilisateur u = new Utilisateur(prenom, nom, login);  
+    public Utilisateur creeUtilisateur(String nom, String prenom, String login) { 
+        Adresse a = new Adresse(94,"Chemin de Guiran","83210","SOLLIES-TOUCAS","France");
+        Utilisateur u = new Utilisateur(prenom, nom, login);
+        ArrayList<Adresse> la = new ArrayList<Adresse>();
+        la.add(a);
+        u.setAdresses(la);
         em.persist(u);  
         return u;  
     }  
