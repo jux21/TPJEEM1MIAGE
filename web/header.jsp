@@ -27,8 +27,8 @@
                         <ul class="right hide-on-med-and-down">
                             <li>login :</li>
                              <li><input type="text" name="login_connexion"/></li>
-                              <li>password :</li>
-                               <li><input type="text" name="password"/></li>
+                             <!--  <li>password :</li>
+                               <li><input type="text" name="password"/></li>-->
                                <input type="hidden" name="action" value="connexion"/>
                                 <li><a class="waves-effect waves-light btn"><input type="submit" value="connexion" name="connexion"/></a></li>
                         </ul>
