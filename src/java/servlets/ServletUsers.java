@@ -6,7 +6,6 @@
 package servlets;
 
 import java.io.IOException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -60,10 +59,7 @@ public class ServletUsers extends HttpServlet {
                 request.setAttribute("listeDesUsers", liste);  
                 request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
-               
-                
-                
-               forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
+                forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
                 message = "Liste des utilisateurs"; 
 
             } else if (action.equals("creerUtilisateursDeTest")) {  
@@ -77,9 +73,7 @@ public class ServletUsers extends HttpServlet {
                 message = "Création des utilisateurs de test";  
                 
             } else if (action.equals("creerUnUtilisateur")) {
-                
-                // Chercher les paramètres name+cpt si les données viennent des formulaires d'ajouts en cascade
-                
+
                 gestionnaireUtilisateurs.creeUtilisateur(request.getParameter("nom"), request.getParameter("prenom"), request.getParameter("login"));
                 Collection<Utilisateur> liste = gestionnaireUtilisateurs.getAllUsers();  
                 request.setAttribute("listeDesUsers", liste);  
@@ -149,9 +143,9 @@ public class ServletUsers extends HttpServlet {
         }
 
         if (session.isNew()) {
-            System.out.println("PAS COOO");
+            System.out.println("Not connected");
         } else {
-            System.out.println("COooo"+(String) session.getAttribute("LOGIN"));
+            System.out.println("Connected "+(String) session.getAttribute("LOGIN"));
         } 
   
         RequestDispatcher dp = request.getRequestDispatcher(forwardTo + "&message=" + message);  

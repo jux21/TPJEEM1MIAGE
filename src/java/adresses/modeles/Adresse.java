@@ -18,7 +18,6 @@ import javax.persistence.Id;
 @Entity
 public class Adresse implements Serializable {
     private static long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -29,7 +28,19 @@ public class Adresse implements Serializable {
                    pays,
                    rue;
     
+    public Adresse() {
+       
+    }
 
+    public Adresse(int num, String rue, String CP, String ville, String pays) {
+        super();
+        this.num = num;
+        this.rue = rue;
+        this.CP = CP;
+        this.ville = ville;
+        this.pays = pays;
+    }
+    
     public int getId() {
         return id;
     }
