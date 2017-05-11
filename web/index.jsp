@@ -15,8 +15,7 @@
 
 <html>  
     <head>  
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">    
         <!--Favicons-->
         <link rel="apple-touch-icon" sizes="57x57" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="${pageContext.request.contextPath}/resources/favicons/apple-icon-60x60.png">
@@ -50,6 +49,8 @@
         <title>Gestionnaire d'utilisateurs</title>  
     </head>  
      <body>  
+    
+         
     <jsp:include page="header.jsp"/> 
 
         <!-- Message qui s'affiche lorsque la page est appelé avec un paramètre http message -->  
@@ -84,6 +85,9 @@
               
   
         <!-- Fin du menu -->  
+        
+        <tbody id="tbody">
+        </tbody>
         
         <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->  
         <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >  
@@ -131,5 +135,6 @@
      
      
         <jsp:include page="footer.jsp"/>  
+        
     </body>  
 </html>

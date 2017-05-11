@@ -22,9 +22,9 @@
             
             <li>
                 <div class="collapsible-header"><i class="material-icons"></i>
-                    <a href="ServletUsers?action=creerUtilisateursDeTest">1. Créer 4 utilisateurs de test</a></li>
+                    <a href="ServletUsers?action=creerUtilisateursDeTest">1. Créer 4 utilisateurs de test</a>
                 </div>
-        
+        </li>
             
             
        <ul class="collapsible" data-collapsible="accordion">
@@ -42,7 +42,9 @@
                         <a class="waves-effect waves-light btn"><input type="submit" value="Créer utilisateur" name="submit"></a>
                     </form> 
                     <div id="containerForForms"></div>
-                    <button class="btn-floating btn-large waves-effect waves-light green center" onclick="addAddForm()"/></button> 
+                    <button class="btn-floating btn-large waves-effect waves-light green center" onclick="addAddForm()"/>
+                        +
+                    </button> 
                </div>
     </li>
     <li>
@@ -94,67 +96,38 @@
     $('.collapsible').collapsible();
   });
         
+
         
-       
-        /*   var tbody;
+        var tbody;
 
             window.onload = function () {
                 tbody = document.querySelector("#tbody");
             };
 
-            function loadBooks() {
-                var url = "http://localhost:8080/TP1M1Miage2015/book/?format=json";
-
+            function loadUsers() {
+                var url = "http://localhost:8080/JEE/ServletUsers?action=listerLesUtilisateurs";
+                
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', url, true);
 
                 xhr.onload = function (evt) {
 
-
                     // Transformation JSON -> objet JavaScript
-                    var books = JSON.parse(this.response);
-                    showBooks(books);
-
+                    var response = JSON.stringify(this.response);
+                    var books = JSON.parse(response);
+                    var debut = books.indexOf('<!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->');
+                    var fin = books.indexOf('</main>');
+                    var res = books.substring(debut, fin);
+                    console.log(debut);
+                    console.log(fin);
+                    console.log(books);
+                    tbody.innerHTML = res; 
                 };
 
                 xhr.send();
 
                 console.log("requête envoyée");
             }
-
-            function showBooks(books) {
-                tbody.innerHTML = "";
-                books.forEach(function (b, index) {
-                    addLigneTable(b, index);
-                });
-            }
-
-            function addLigneTable(l, index) {
-                var ligne = document.createElement("tr");
-
-                if ((index % 2) === 0) {
-                    ligne.setAttribute("class", "alt");
-                }
-
-                var titre = document.createElement("td");
-                titre.innerHTML = l.title;
-                ligne.appendChild(titre);
-
-                var description = document.createElement("td");
-                description.innerHTML = l.description;
-                ligne.appendChild(description);
-
-                var date = document.createElement("td");
-                date.innerHTML = l.pubDate;
-                ligne.appendChild(date);
-
-                var price = document.createElement("td");
-                price.innerHTML = l.price;
-                ligne.appendChild(price);
-
-
-                tbody.appendChild(ligne);
-            }*/
 
             // Adding book
             function addUser() {

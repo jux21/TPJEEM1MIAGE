@@ -6,6 +6,7 @@
 package servlets;
 
 import java.io.IOException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -59,9 +60,12 @@ public class ServletUsers extends HttpServlet {
                 request.setAttribute("listeDesUsers", liste);  
                 request.setAttribute("numberOfUsers", gestionnaireUtilisateurs.getNumberOfUsers());
                 request.setAttribute("paginationPages", gestionnaireUtilisateurs.getPaginationInfos((Long)request.getAttribute("numberOfUsers")));
-                forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
-                message = "Liste des utilisateurs"; 
+               
                 
+                
+               forwardTo = "index.jsp?action=listerLesUtilisateurs"; 
+                message = "Liste des utilisateurs"; 
+
             } else if (action.equals("creerUtilisateursDeTest")) {  
                 
                 gestionnaireUtilisateurs.creerUtilisateursDeTest();  

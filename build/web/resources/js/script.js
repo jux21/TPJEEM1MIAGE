@@ -37,6 +37,8 @@ function addAddForm()
     input.name = "login"+cpt;
     form.appendChild(input);
     
+    
+    
     input = document.createElement("input");
     input.type = "hidden";
     input.name = "action";
@@ -49,7 +51,7 @@ function addAddForm()
     input.value = "Créer utilisateur";
     
     a = document.createElement("a");
-    a.class = "waves-effect waves-light btn";
+    a.className = "waves-effect waves-light btn";
     a.appendChild(input);
     form.appendChild(a);
 
