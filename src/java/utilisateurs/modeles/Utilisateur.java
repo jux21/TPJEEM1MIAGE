@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import telephones.modeles.Telephone;
 
 /**
  *
@@ -31,6 +32,8 @@ public class Utilisateur implements Serializable {
     private String login;
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Adresse> adresses;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Telephone> telephones;
     
     public Utilisateur() {
        

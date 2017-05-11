@@ -31,11 +31,13 @@ public class GestionnaireUtilisateurs {
     }  
   
     public Utilisateur creeUtilisateur(String nom, String prenom, String login) { 
-        Adresse a = new Adresse(94,"Chemin de Guiran","83210","SOLLIES-TOUCAS","France");
         Utilisateur u = new Utilisateur(prenom, nom, login);
+        
+        Adresse a = new Adresse(94,"Chemin de Guiran","83210","SOLLIES-TOUCAS","France");
         ArrayList<Adresse> la = new ArrayList<Adresse>();
         la.add(a);
         u.setAdresses(la);
+        
         em.persist(u);  
         return u;  
     }  
